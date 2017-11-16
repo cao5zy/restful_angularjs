@@ -23,7 +23,10 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
     fileManager.StartNewFile(entity.Name + ".cs");
     BeginNamespace(code);
 #>
+
 <#=codeStringGenerator.UsingDirectives(inHeader: false)#>
+<#="using System.ServiceModel;"#>
+[ServiceContract]
 <#=codeStringGenerator.EntityClassOpening(entity)#>
 {
 <#

@@ -9,9 +9,12 @@
 
 namespace Models
 {
+    
     using System;
     using System.Collections.Generic;
     
+    using System.ServiceModel;
+    [ServiceContract]
     public partial class User
     {
         public int UserId { get; set; }

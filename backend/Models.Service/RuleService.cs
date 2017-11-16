@@ -11,5 +11,15 @@ namespace Models.Service
         public static Rule GetRule(string id) {
             throw new NotImplementedException();
         }
+
+        public static User ValidateUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string ValidateUser(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
