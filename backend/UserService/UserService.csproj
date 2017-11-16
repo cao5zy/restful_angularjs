@@ -114,6 +114,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Models.Service\Models.Service.csproj">
+      <Project>{04449173-baff-433f-8914-fe92f4089404}</Project>
+      <Name>Models.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{43a8d80b-27e8-4840-9445-dffb9d3cc6b7}</Project>
       <Name>Models</Name>

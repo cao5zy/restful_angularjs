@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
 using Models;
+using Models.Service;
 
 namespace UserService
 {
@@ -15,32 +16,34 @@ namespace UserService
     {
         public void CreateUser(User user)
         {
-            throw new NotImplementedException();
+            Models.Service.UserService.CreateUser(
+                RuleService.ValidateUser(user));
         }
 
         public int DeleteUser(string id)
         {
-            throw new NotImplementedException();
+            return Models.Service.UserService.DeleteUser(
+                RuleService.ValidateUser(id));
         }
 
         public List<Role> GetRoles()
         {
-            throw new NotImplementedException();
+            return RoleService.GetRoles();
         }
 
         public Rule GetRule(string id)
         {
-            throw new NotImplementedException();
+            return RuleService.GetRule(id);
         }
 
         public List<User> GetUsers(string id, string role)
         {
-            throw new NotImplementedException();
+            return Models.Service.UserService.GetUsers(id, role);
         }
 
         public User UpdateUser(string id, User user)
         {
-            throw new NotImplementedException();
+            return Models.Service.UserService.UpdateUser(id, RuleService.ValidateUser(user));
         }
     }
 }
