@@ -70,6 +70,7 @@
     <Compile Include="Role.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
+    <Compile Include="Rule.cs" />
     <Compile Include="User.cs">
       <DependentUpon>Models.tt</DependentUpon>
     </Compile>
