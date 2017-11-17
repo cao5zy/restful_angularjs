@@ -16,7 +16,7 @@ namespace UserService
         {
             AutofacHostFactory.Container = new Func<ContainerBuilder, IContainer>((builder) =>
             {
-                builder.RegisterType<global::UserService.UserService>();
+                builder.RegisterType<UserService>();
                 return builder.Build();
             })(new ContainerBuilder());
         }
