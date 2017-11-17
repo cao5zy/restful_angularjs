@@ -1,6 +1,6 @@
 ﻿<%@ ServiceHost 
 Language="C#" 
 Debug="true" 
-Service="UserService.UserService, UserService"
+Service="UserService.InfrastructureService, UserService"
 Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf"
- CodeBehind="UserService.svc.cs" %>
+ CodeBehind="InfrastructureService.cs" %>
