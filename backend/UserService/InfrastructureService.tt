@@ -1,0 +1,22 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ assembly name="$(SolutionDir)\bin\UserService.Dll"  #>
+<#@ output extension=".cs" #>
+
+<# foreach(var name in CodeHelper.GetMethodNames()){#>
+<#=name#>
+<#}#>
+
+<#+
+public static class CodeHelper
+{
+	public static List<string> GetMethodNames(){
+		return (from method in typeof(UserService.UserService).GetMethods(BindingFlags.Public | BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.DeclaredOnly)
+		select method.Name).ToList();
+	}
+}
+#>

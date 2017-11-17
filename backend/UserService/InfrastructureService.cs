@@ -11,6 +11,7 @@ namespace UserService
         private IUserService _service = null;
         public InfrastructureService(IUserService service)
         {
+            
             this._service = service;
         }
         public void CreateUser(User user)
