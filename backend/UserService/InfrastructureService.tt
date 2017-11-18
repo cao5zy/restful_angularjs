@@ -22,7 +22,9 @@ namespace UserService
             this._service = service;
         }
 		<# foreach(var name in codeHelper.GetMethodNames()){#>
-		public <#=codeHelper.GetReturnTypeName(name)#> <#=name#>(){}
+		public <#=codeHelper.GetReturnTypeName(name)#> <#=name#>(<#=codeHelper.GetParams(name)#>){
+		
+		}
 		<#}#>
 	}
 }
@@ -33,10 +35,16 @@ public class CodeHelper
 {
 	public readonly Func<List<string>> GetMethodNames = null;
 	public readonly Func<string, string> GetReturnTypeName = null;
+	public readonly Func<string, string> GetParams = null;
 
 	public CodeHelper(){
 		var methods = from method in typeof(UserService.UserService).GetMethods(BindingFlags.Public | BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.DeclaredOnly) select method;
-		
+		var convertList = new Func<string, string>((rawName)=>{
+				return new Func<string, string>((handledName)=>{
+					return handledName != rawName ? $"List<{handledName}>" : rawName;
+				})(rawName.Replace("System.Collections.Generic.List`1", "").Replace("[", "").Replace("]", ""));
+			});
+
 		this.GetMethodNames = ()=>{
 			return (from method in methods
 			select method.Name).ToList();
@@ -46,13 +54,15 @@ public class CodeHelper
 			var convertVoid = new Func<string, string>((rawName)=>{
 				return rawName == "System.Void" ? "void" : rawName;
 			});
-			//System.Collections.Generic.List`1[Models.Role]
-			var convertList = new Func<string, string>((rawName)=>{
-				return new Func<string, string>((handledName)=>{
-					return handledName != rawName ? $"List<{handledName}" : rawName;
-				})(rawName.Replace("System.Collections.Generic.List`1", "").Replace("[", "").Replace("]", ""));
-			});
+			
 			return (from method in methods where method.Name == methodName select convertList(convertVoid(method.ReturnType.ToString()))).First();
+		};
+
+		this.GetParams = (methodName)=>{
+			return string.Join(",", (from method in methods where method.Name == methodName select method)
+			.SelectMany(method=>method.GetParameters())
+			.Select(parameter=>$"{convertList(parameter.ParameterType.ToString())} {parameter.Name}")
+			.ToArray());
 		};
 	}
 }
