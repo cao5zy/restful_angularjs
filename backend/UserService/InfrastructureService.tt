@@ -21,7 +21,8 @@ namespace UserService
         {
             this._service = service;
         }
-		<# foreach(var name in codeHelper.GetMethodNames()){#>
+<# foreach(var name in codeHelper.GetMethodNames()){#>
+
 		public <#=codeHelper.GetReturnTypeName(name)#> <#=name#>(<#=codeHelper.GetParamDeclarations(name)#>){
 			try{
 				<#=codeHelper.GetReturnStatement(name)#> this._service.<#=name#>(<#=codeHelper.GetParams(name)#>);
@@ -32,7 +33,7 @@ namespace UserService
 				throw;
 			}
 		}
-		<#}#>
+<#}#>
 	}
 }
 
