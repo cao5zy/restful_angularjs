@@ -7,16 +7,53 @@
 <#@ assembly name="$(SolutionDir)\bin\UserService.Dll"  #>
 <#@ output extension=".cs" #>
 
-<# foreach(var name in CodeHelper.GetMethodNames()){#>
-<#=name#>
-<#}#>
+using System;
+using System.Collections.Generic;
+using Models;
+
+<# var codeHelper = new CodeHelper(); #>
+namespace UserService
+{
+    public class InfrastructureService1 : IUserService
+    {
+		private IUserService _service = null;
+		public InfrastructureService1(IUserService service)
+        {
+            this._service = service;
+        }
+		<# foreach(var name in codeHelper.GetMethodNames()){#>
+		public <#=codeHelper.GetReturnTypeName(name)#> <#=name#>(){}
+		<#}#>
+	}
+}
+
 
 <#+
-public static class CodeHelper
+public class CodeHelper
 {
-	public static List<string> GetMethodNames(){
-		return (from method in typeof(UserService.UserService).GetMethods(BindingFlags.Public | BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.DeclaredOnly)
-		select method.Name).ToList();
+	public readonly Func<List<string>> GetMethodNames = null;
+	public readonly Func<string, string> GetReturnTypeName = null;
+
+	public CodeHelper(){
+		var methods = from method in typeof(UserService.UserService).GetMethods(BindingFlags.Public | BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.DeclaredOnly) select method;
+		
+		this.GetMethodNames = ()=>{
+			return (from method in methods
+			select method.Name).ToList();
+		};
+
+		this.GetReturnTypeName = (methodName)=>{
+			var convertVoid = new Func<string, string>((rawName)=>{
+				return rawName == "System.Void" ? "void" : rawName;
+			});
+			//System.Collections.Generic.List`1[Models.Role]
+			var convertList = new Func<string, string>((rawName)=>{
+				return new Func<string, string>((handledName)=>{
+					return handledName != rawName ? $"List<{handledName}" : rawName;
+				})(rawName.Replace("System.Collections.Generic.List`1", "").Replace("[", "").Replace("]", ""));
+			});
+			return (from method in methods where method.Name == methodName select convertList(convertVoid(method.ReturnType.ToString()))).First();
+		};
 	}
 }
 #>

@@ -97,6 +97,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="InfrastructureService.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>InfrastructureService1.cs</LastGenOutput>
+    </Content>
     <Content Include="UserService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -105,6 +109,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="InfrastructureService.cs" />
+    <Compile Include="InfrastructureService1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InfrastructureService.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserService.svc.cs">
       <DependentUpon>UserService.svc</DependentUpon>
     </Compile>
@@ -135,6 +144,9 @@
       <Project>{43a8d80b-27e8-4840-9445-dffb9d3cc6b7}</Project>
       <Name>Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
