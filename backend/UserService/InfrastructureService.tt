@@ -22,8 +22,15 @@ namespace UserService
             this._service = service;
         }
 		<# foreach(var name in codeHelper.GetMethodNames()){#>
-		public <#=codeHelper.GetReturnTypeName(name)#> <#=name#>(<#=codeHelper.GetParams(name)#>){
-		
+		public <#=codeHelper.GetReturnTypeName(name)#> <#=name#>(<#=codeHelper.GetParamDeclarations(name)#>){
+			try{
+				<#=codeHelper.GetReturnStatement(name)#> this._service.<#=name#>(<#=codeHelper.GetParams(name)#>);
+			}
+			catch(Exception ex)
+			{
+				//Log ex
+				throw;
+			}
 		}
 		<#}#>
 	}
@@ -35,10 +42,15 @@ public class CodeHelper
 {
 	public readonly Func<List<string>> GetMethodNames = null;
 	public readonly Func<string, string> GetReturnTypeName = null;
+	public readonly Func<string, string> GetParamDeclarations = null;
 	public readonly Func<string, string> GetParams = null;
+	public readonly Func<string, string> GetReturnStatement = null;
 
 	public CodeHelper(){
 		var methods = from method in typeof(UserService.UserService).GetMethods(BindingFlags.Public | BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.DeclaredOnly) select method;
+		var oneMethod = new Func<string, MethodInfo>((methodName)=>{
+			return (from method in methods where method.Name == methodName select method).First();
+		});
 		var convertList = new Func<string, string>((rawName)=>{
 				return new Func<string, string>((handledName)=>{
 					return handledName != rawName ? $"List<{handledName}>" : rawName;
@@ -54,15 +66,21 @@ public class CodeHelper
 			var convertVoid = new Func<string, string>((rawName)=>{
 				return rawName == "System.Void" ? "void" : rawName;
 			});
-			
-			return (from method in methods where method.Name == methodName select convertList(convertVoid(method.ReturnType.ToString()))).First();
+			return convertList(convertVoid(oneMethod(methodName).ReturnType.ToString()));
+		};
+
+		this.GetParamDeclarations = (methodName)=>{
+			return string.Join(",", (from parameter in oneMethod(methodName).GetParameters()
+				select $"{convertList(parameter.ParameterType.ToString())} {parameter.Name}")
+			.ToArray());
 		};
 
 		this.GetParams = (methodName)=>{
-			return string.Join(",", (from method in methods where method.Name == methodName select method)
-			.SelectMany(method=>method.GetParameters())
-			.Select(parameter=>$"{convertList(parameter.ParameterType.ToString())} {parameter.Name}")
-			.ToArray());
+			return string.Join(",", (from parameter in oneMethod(methodName).GetParameters() select $"{parameter.Name}").ToArray());
+		};
+
+		this.GetReturnStatement = (methodName)=>{
+			return this.GetReturnTypeName(methodName) != "void" ? "return" : "";
 		};
 	}
 }
