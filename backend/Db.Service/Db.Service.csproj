@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{04449173-BAFF-433F-8914-FE92F4089404}</ProjectGuid>
+    <ProjectGuid>{E2B12F4B-EB5C-4350-AA72-505E2303BD85}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Models.Service</RootNamespace>
-    <AssemblyName>Models.Service</AssemblyName>
+    <RootNamespace>Db.Service</RootNamespace>
+    <AssemblyName>Db.Service</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,20 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbService.cs" />
+    <Compile Include="IDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoleService.cs" />
-    <Compile Include="RuleService.cs" />
-    <Compile Include="UserService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Db.Service\Db.Service.csproj">
-      <Project>{e2b12f4b-eb5c-4350-aa72-505e2303bd85}</Project>
-      <Name>Db.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{43a8d80b-27e8-4840-9445-dffb9d3cc6b7}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,7 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using Autofac;
 using Autofac.Integration.Wcf;
-using Models.Service;
+using Db.Service;
 
 namespace UserService
 {

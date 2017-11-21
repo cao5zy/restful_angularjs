@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models.Service
+namespace Db.Service
 {
-    public interface IDb
+    public class DbService : IDb
     {
     }
 }

@@ -139,6 +139,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Db.Service\Db.Service.csproj">
+      <Project>{E2B12F4B-EB5C-4350-AA72-505E2303BD85}</Project>
+      <Name>Db.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models.Service\Models.Service.csproj">
       <Project>{04449173-baff-433f-8914-fe92f4089404}</Project>
       <Name>Models.Service</Name>
