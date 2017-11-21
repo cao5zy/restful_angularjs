@@ -6,6 +6,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using Autofac;
 using Autofac.Integration.Wcf;
+using Models.Service;
 
 namespace UserService
 {
@@ -18,6 +19,8 @@ namespace UserService
             {
                 builder.RegisterType<UserService>()
                     .Named<IUserService>(namedService);
+
+                builder.RegisterType<DbService>().As<IDb>();
 
                 builder.RegisterInstance<log4net.ILog>(log4net.LogManager.GetLogger(typeof(Global)))
                     .As<log4net.ILog>();

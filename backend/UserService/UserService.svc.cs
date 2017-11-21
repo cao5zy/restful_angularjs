@@ -14,36 +14,41 @@ namespace UserService
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class UserService : IUserService
     {
+        private IDb _db = null;
+        public UserService(IDb db)
+        {
+            this._db = db;
+        }
         public void CreateUser(User user)
         {
             Models.Service.UserService.CreateUser(
-                RuleService.ValidateUser(user));
+                RuleService.ValidateUser(user), this._db);
         }
 
         public int DeleteUser(string id)
         {
             return Models.Service.UserService.DeleteUser(
-                RuleService.ValidateUser(id));
+                RuleService.ValidateUser(id), this._db);
         }
 
         public List<Role> GetRoles()
         {
-            return RoleService.GetRoles();
+            return RoleService.GetRoles(this._db);
         }
 
         public Rule GetRule(string id)
         {
-            return RuleService.GetRule(id);
+            return RuleService.GetRule(id, this._db);
         }
 
         public List<User> GetUsers(string id, string role)
         {
-            return Models.Service.UserService.GetUsers(id, role);
+            return Models.Service.UserService.GetUsers(id, role, this._db);
         }
 
         public User UpdateUser(string id, User user)
         {
-            return Models.Service.UserService.UpdateUser(id, RuleService.ValidateUser(user));
+            return Models.Service.UserService.UpdateUser(id, RuleService.ValidateUser(user), this._db);
         }
     }
 }

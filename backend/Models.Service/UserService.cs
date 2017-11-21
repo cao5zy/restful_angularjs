@@ -13,17 +13,27 @@ namespace Models.Service
             throw new NotImplementedException();
         }
 
-        public static int DeleteUser(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         public static List<User> GetUsers(string id, string role)
         {
             throw new NotImplementedException();
         }
 
-        public static User UpdateUser(string id, User user)
+        public static void CreateUser(User user, IDb _db)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static int DeleteUser(string v, IDb _db)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static List<User> GetUsers(string id, string role, IDb _db)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static User UpdateUser(string id, User user, IDb _db)
         {
             throw new NotImplementedException();
         }

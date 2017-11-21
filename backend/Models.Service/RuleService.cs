@@ -21,5 +21,10 @@ namespace Models.Service
         {
             throw new NotImplementedException();
         }
+
+        public static Rule GetRule(string id, IDb _db)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

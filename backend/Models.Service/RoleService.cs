@@ -11,5 +11,10 @@ namespace Models.Service
         public static List<Role> GetRoles() {
             throw new NotImplementedException();
         }
+
+        public static List<Role> GetRoles(IDb _db)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
