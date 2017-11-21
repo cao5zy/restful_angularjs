@@ -17,19 +17,27 @@ namespace UserService
     public class InfrastructureService : IUserService
     {
 		private IUserService _service = null;
-		public InfrastructureService(IUserService service)
+        private log4net.ILog _log = null;
+
+		public InfrastructureService(IUserService service, log4net.ILog logger)
         {
             this._service = service;
+			this._log = logger;
         }
 <# foreach(var name in codeHelper.GetMethodNames()){#>
 
 		public <#=codeHelper.GetReturnTypeName(name)#> <#=name#>(<#=codeHelper.GetParamDeclarations(name)#>){
 			try{
-				<#=codeHelper.GetReturnStatement(name)#> this._service.<#=name#>(<#=codeHelper.GetParams(name)#>);
+				this._log.Debug("<#=name#>");
+		<# foreach(var paramName in codeHelper.GetParamNames(name)){#>
+		this._log.Debug(<#=paramName#>);
+		<#}#>
+		<#=codeHelper.GetReturnStatement(name)#> this._service.<#=name#>(<#=codeHelper.GetParams(name)#>);
 			}
 			catch(Exception ex)
 			{
-				//Log ex
+				this._log.Error("<#=name#>");
+				this._log.Error(ex);
 				throw;
 			}
 		}
@@ -46,6 +54,7 @@ public class CodeHelper
 	public readonly Func<string, string> GetParamDeclarations = null;
 	public readonly Func<string, string> GetParams = null;
 	public readonly Func<string, string> GetReturnStatement = null;
+	public readonly Func<string, IEnumerable<string>> GetParamNames = null;
 
 	public CodeHelper(){
 		var methods = from method in typeof(UserService.UserService).GetMethods(BindingFlags.Public | BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.DeclaredOnly) select method;
@@ -77,7 +86,11 @@ public class CodeHelper
 		};
 
 		this.GetParams = (methodName)=>{
-			return string.Join(",", (from parameter in oneMethod(methodName).GetParameters() select $"{parameter.Name}").ToArray());
+			return string.Join(",", this.GetParamNames(methodName).ToArray());
+		};
+
+		this.GetParamNames = (methodName)=>{
+			return from parameter in oneMethod(methodName).GetParameters() select $"{parameter.Name}";
 		};
 
 		this.GetReturnStatement = (methodName)=>{
