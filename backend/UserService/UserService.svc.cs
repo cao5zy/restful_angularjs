@@ -42,9 +42,9 @@ namespace UserService
             return RuleService.GetRule(id, this._db);
         }
 
-        public List<User> GetUsers(string id, string role)
+        public List<User> GetUsers(string name, string role)
         {
-            return Models.Service.UserService.GetUsers(id, role, this._db);
+            return Models.Service.UserService.GetUsers(name, role, this._db);
         }
 
         public User UpdateUser(string id, User user)

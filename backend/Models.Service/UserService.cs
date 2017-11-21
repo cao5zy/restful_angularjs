@@ -9,29 +9,36 @@ namespace Models.Service
 {
     public static class UserService
     {
-        public static void CreateUser(User user)
+        public static void CreateUser(User user, IDb db)
         {
-            throw new NotImplementedException();
+            db.CreateUser(user);
         }
 
-        public static List<User> GetUsers(string id, string role)
+        public static int DeleteUser(string id, IDb db)
         {
-            throw new NotImplementedException();
+            return db.DeleteUserById(id);
         }
 
-        public static void CreateUser(User user, IDb _db)
+        public static List<User> GetUsers(string name, string role, IDb db)
         {
-            throw new NotImplementedException();
+            var filterName = new Func<IEnumerable<User>, IEnumerable<User>>((users) => {
+                return !string.IsNullOrEmpty(name) ? from user in users
+                                                    where user.Username.Contains(name)
+                                                    select user : users;
+            });
+
+            var filterRole = new Func<IEnumerable<User>, int, IEnumerable<User>>((users, roleId) => {
+                return roleId != 0 ? from user in users
+                                     where user.RoleId == roleId
+                                     select user : users;
+            });
+
+            return filterName(filterRole(db.GetUsers(), GetRoleId(role, db))).ToList();
         }
 
-        public static int DeleteUser(string v, IDb _db)
+        private static int GetRoleId(string role, IDb db)
         {
-            throw new NotImplementedException();
-        }
-
-        public static List<User> GetUsers(string id, string role, IDb _db)
-        {
-            throw new NotImplementedException();
+            return string.IsNullOrEmpty(role) ? 0 : db.GetRoleId(role);
         }
 
         public static User UpdateUser(string id, User user, IDb _db)
