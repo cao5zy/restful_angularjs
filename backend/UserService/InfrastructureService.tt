@@ -14,10 +14,10 @@ using Models;
 <# var codeHelper = new CodeHelper(); #>
 namespace UserService
 {
-    public class InfrastructureService1 : IUserService
+    public class InfrastructureService : IUserService
     {
 		private IUserService _service = null;
-		public InfrastructureService1(IUserService service)
+		public InfrastructureService(IUserService service)
         {
             this._service = service;
         }

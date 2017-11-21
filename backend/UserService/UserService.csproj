@@ -99,7 +99,7 @@
     <Content Include="Global.asax" />
     <Content Include="InfrastructureService.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>InfrastructureService1.cs</LastGenOutput>
+      <LastGenOutput>InfrastructureService.cs</LastGenOutput>
     </Content>
     <Content Include="UserService.svc" />
     <Content Include="Web.config" />
@@ -107,12 +107,6 @@
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="InfrastructureService.cs" />
-    <Compile Include="InfrastructureService1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InfrastructureService.tt</DependentUpon>
     </Compile>
     <Compile Include="UserService.svc.cs">
       <DependentUpon>UserService.svc</DependentUpon>

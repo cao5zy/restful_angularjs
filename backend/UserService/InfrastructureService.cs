@@ -1,47 +1,84 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Models;
 
 namespace UserService
 {
     public class InfrastructureService : IUserService
     {
-        private IUserService _service = null;
-        public InfrastructureService(IUserService service)
+		private IUserService _service = null;
+		public InfrastructureService(IUserService service)
         {
-            
             this._service = service;
         }
-        public void CreateUser(User user)
-        {
-            throw new NotImplementedException();
-        }
 
-        public int DeleteUser(string id)
-        {
-            throw new NotImplementedException();
-        }
+		public void CreateUser(Models.User user){
+			try{
+				 this._service.CreateUser(user);
+			}
+			catch(Exception ex)
+			{
+				//Log ex
+				throw;
+			}
+		}
 
-        public List<Role> GetRoles()
-        {
-            throw new NotImplementedException();
-        }
+		public System.Int32 DeleteUser(System.String id){
+			try{
+				return this._service.DeleteUser(id);
+			}
+			catch(Exception ex)
+			{
+				//Log ex
+				throw;
+			}
+		}
 
-        public Rule GetRule(string id)
-        {
-            throw new NotImplementedException();
-        }
+		public List<Models.Role> GetRoles(){
+			try{
+				return this._service.GetRoles();
+			}
+			catch(Exception ex)
+			{
+				//Log ex
+				throw;
+			}
+		}
 
-        public List<User> GetUsers(string id, string role)
-        {
-            throw new NotImplementedException();
-        }
+		public Models.Rule GetRule(System.String id){
+			try{
+				return this._service.GetRule(id);
+			}
+			catch(Exception ex)
+			{
+				//Log ex
+				throw;
+			}
+		}
 
-        public User UpdateUser(string id, User user)
-        {
-            throw new NotImplementedException();
-        }
-    }
+		public List<Models.User> GetUsers(System.String id,System.String role){
+			try{
+				return this._service.GetUsers(id,role);
+			}
+			catch(Exception ex)
+			{
+				//Log ex
+				throw;
+			}
+		}
+
+		public Models.User UpdateUser(System.String id,Models.User user){
+			try{
+				return this._service.UpdateUser(id,user);
+			}
+			catch(Exception ex)
+			{
+				//Log ex
+				throw;
+			}
+		}
+	}
 }
+
+
