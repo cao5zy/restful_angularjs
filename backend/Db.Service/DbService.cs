@@ -15,7 +15,7 @@ namespace Db.Service
             throw new NotImplementedException();
         }
 
-        public int DeleteUserById(string id)
+        public int DeleteUserById(int userId)
         {
             throw new NotImplementedException();
         }

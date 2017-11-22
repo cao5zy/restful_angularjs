@@ -27,5 +27,10 @@ namespace Models.Service
         {
             throw new NotImplementedException();
         }
+
+        public static int ValidateUserById(int userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

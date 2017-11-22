@@ -9,11 +9,7 @@ namespace Models.Service
 {
     public static class RoleService
     {
-        public static List<Role> GetRoles() {
-            throw new NotImplementedException();
-        }
-
-        public static List<Role> GetRoles(IDb _db)
+        public static List<Role> GetRoles(IDb db)
         {
             throw new NotImplementedException();
         }

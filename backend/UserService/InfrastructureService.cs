@@ -30,11 +30,11 @@ namespace UserService
 			}
 		}
 
-		public System.Int32 DeleteUser(System.String id){
+		public System.Int32 DeleteUser(System.Int32 userId){
 			try{
 				this._log.Debug("DeleteUser");
-				this._log.Debug(id);
-				return this._service.DeleteUser(id);
+				this._log.Debug(userId);
+				return this._service.DeleteUser(userId);
 			}
 			catch(Exception ex)
 			{
@@ -71,12 +71,12 @@ namespace UserService
 			}
 		}
 
-		public List<Models.User> GetUsers(System.String id,System.String role){
+		public List<Models.User> GetUsers(System.String name,System.String role){
 			try{
 				this._log.Debug("GetUsers");
-				this._log.Debug(id);
+				this._log.Debug(name);
 				this._log.Debug(role);
-				return this._service.GetUsers(id,role);
+				return this._service.GetUsers(name,role);
 			}
 			catch(Exception ex)
 			{
@@ -86,12 +86,11 @@ namespace UserService
 			}
 		}
 
-		public Models.User UpdateUser(System.String id,Models.User user){
+		public Models.User UpdateUser(Models.User user){
 			try{
 				this._log.Debug("UpdateUser");
-				this._log.Debug(id);
 				this._log.Debug(user);
-				return this._service.UpdateUser(id,user);
+				return this._service.UpdateUser(user);
 			}
 			catch(Exception ex)
 			{

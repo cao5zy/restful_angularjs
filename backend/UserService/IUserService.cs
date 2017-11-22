@@ -26,12 +26,12 @@ namespace UserService
         void CreateUser(User user);
 
         [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "User/{id}")]
-        User UpdateUser(string id, User user);
+        [WebInvoke(Method = "PUT", UriTemplate = "User")]
+        User UpdateUser(User user);
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE", UriTemplate = "User/{id}")]
-        int DeleteUser(string id);
+        [WebInvoke(Method = "DELETE", UriTemplate = "User/{userId}")]
+        int DeleteUser(int userId);
 
         [OperationContract]
         [WebGet(UriTemplate = "Rule/{id}")]
