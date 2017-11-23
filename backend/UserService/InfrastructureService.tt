@@ -28,17 +28,17 @@ namespace UserService
 
 		public <#=codeHelper.GetReturnTypeName(name)#> <#=name#>(<#=codeHelper.GetParamDeclarations(name)#>){
 			try{
-				this._log.Debug("<#=name#>");
-		<# foreach(var paramName in codeHelper.GetParamNames(name)){#>
-		this._log.Debug(<#=paramName#>);
-		<#}#>
-		<#=codeHelper.GetReturnStatement(name)#> this._service.<#=name#>(<#=codeHelper.GetParams(name)#>);
+				this._log.Debug(new {<# var ls = (from paramName in codeHelper.GetParamNames(name)
+				select new { name = paramName, val = paramName}).ToList();
+
+				ls.Add(new {name = "_name", val = "\"" + name + "\""});
+				#><#=string.Join(", ", ls.ConvertAll(n=>n.name + "=" + n.val))#>});
+				<#=codeHelper.GetReturnStatement(name)#> this._service.<#=name#>(<#=codeHelper.GetParams(name)#>);
 			}
 			catch(Exception ex)
 			{
-				this._log.Error("<#=name#>");
-				this._log.Error(ex);
-				throw;
+				this._log.Error(new { name = "<#=name#>", ex = ex});
+				<#=codeHelper.GetDefaultReturn(name)#>
 			}
 		}
 <#}#>
@@ -55,6 +55,7 @@ public class CodeHelper
 	public readonly Func<string, string> GetParams = null;
 	public readonly Func<string, string> GetReturnStatement = null;
 	public readonly Func<string, IEnumerable<string>> GetParamNames = null;
+	public readonly Func<string, string> GetDefaultReturn = null;
 
 	public CodeHelper(){
 		var methods = from method in typeof(UserService.UserService).GetMethods(BindingFlags.Public | BindingFlags.InvokeMethod | BindingFlags.Instance | BindingFlags.DeclaredOnly) select method;
@@ -95,6 +96,41 @@ public class CodeHelper
 
 		this.GetReturnStatement = (methodName)=>{
 			return this.GetReturnTypeName(methodName) != "void" ? "return" : "";
+		};
+
+		this.GetDefaultReturn = (methodName)=>{
+			var getType = new Func<string, string>((returnTypeName)=>{
+				return new Func<KeyValuePair<string, Func<string, bool>>, string>((keyPair)=>{
+					return string.IsNullOrEmpty(keyPair.Key) ? "" : keyPair.Key;
+
+					})(new List<KeyValuePair<string, Func<string, bool>>>{
+					new KeyValuePair<string, Func<string, bool>> ("string", 
+						new Func<string, bool>((name)=>{return name.ToLower().Contains("string");})
+						),
+					new KeyValuePair<string, Func<string, bool>>(
+						"number",
+						new Func<string, bool>((name)=>{return name.ToLower().Contains("int")
+							|| name.ToLower().Contains("long")
+							|| name.ToLower().Contains("decimal")
+							|| name.ToLower().Contains("float")
+							|| name.ToLower().Contains("double");})
+					),
+					new KeyValuePair<string, Func<string, bool>>(
+						"void",
+						new Func<string, bool>((name)=>{ return name.ToLower().Contains("void");})
+					)
+				}.Find(n=>n.Value(returnTypeName)));
+			});
+
+			return new Func<string, string>((typeCategory)=>{
+				return string.IsNullOrEmpty(typeCategory) ?
+				"return null;": new Dictionary<string, string>{
+							{"string", "return \"\";"},
+							{"number","return 0;"},
+							{"void",""}
+						}[typeCategory];
+				})(getType(this.GetReturnTypeName(methodName)));
+			
 		};
 	}
 }

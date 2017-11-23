@@ -18,85 +18,73 @@ namespace UserService
 
 		public void CreateUser(Models.User user){
 			try{
-				this._log.Debug("CreateUser");
-				this._log.Debug(user);
+				this._log.Debug(new {user=user, _name="CreateUser"});
 				 this._service.CreateUser(user);
 			}
 			catch(Exception ex)
 			{
-				this._log.Error("CreateUser");
-				this._log.Error(ex);
-				throw;
+				this._log.Error(new { name = "CreateUser", ex = ex});
+				
 			}
 		}
 
 		public System.Int32 DeleteUser(System.Int32 userId){
 			try{
-				this._log.Debug("DeleteUser");
-				this._log.Debug(userId);
+				this._log.Debug(new {userId=userId, _name="DeleteUser"});
 				return this._service.DeleteUser(userId);
 			}
 			catch(Exception ex)
 			{
-				this._log.Error("DeleteUser");
-				this._log.Error(ex);
-				throw;
+				this._log.Error(new { name = "DeleteUser", ex = ex});
+				return 0;
 			}
 		}
 
 		public List<Models.Role> GetRoles(){
 			try{
-				this._log.Debug("GetRoles");
+				this._log.Debug(new {_name="GetRoles"});
 				return this._service.GetRoles();
 			}
 			catch(Exception ex)
 			{
-				this._log.Error("GetRoles");
-				this._log.Error(ex);
-				throw;
+				this._log.Error(new { name = "GetRoles", ex = ex});
+				return null;
 			}
 		}
 
 		public Models.Rule GetRule(System.String id){
 			try{
-				this._log.Debug("GetRule");
-				this._log.Debug(id);
+				this._log.Debug(new {id=id, _name="GetRule"});
 				return this._service.GetRule(id);
 			}
 			catch(Exception ex)
 			{
-				this._log.Error("GetRule");
-				this._log.Error(ex);
-				throw;
+				this._log.Error(new { name = "GetRule", ex = ex});
+				return null;
 			}
 		}
 
 		public List<Models.User> GetUsers(System.String name,System.String role){
 			try{
-				this._log.Debug("GetUsers");
-				this._log.Debug(name);
-				this._log.Debug(role);
+				this._log.Debug(new {name=name, role=role, _name="GetUsers"});
 				return this._service.GetUsers(name,role);
 			}
 			catch(Exception ex)
 			{
-				this._log.Error("GetUsers");
-				this._log.Error(ex);
-				throw;
+				this._log.Error(new { name = "GetUsers", ex = ex});
+				return null;
 			}
 		}
 
 		public Models.User UpdateUser(Models.User user){
 			try{
-				this._log.Debug("UpdateUser");
-				this._log.Debug(user);
+				this._log.Debug(new {user=user, _name="UpdateUser"});
 				return this._service.UpdateUser(user);
 			}
 			catch(Exception ex)
 			{
-				this._log.Error("UpdateUser");
-				this._log.Error(ex);
-				throw;
+				this._log.Error(new { name = "UpdateUser", ex = ex});
+				return null;
 			}
 		}
 	}
