@@ -25,6 +25,11 @@ namespace Db.Service
             throw new NotImplementedException();
         }
 
+        public IEnumerable<Role> GetRoles()
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<User> GetUsers()
         {
             return from user in this._dbContext.User select user;

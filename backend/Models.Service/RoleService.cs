@@ -11,7 +11,7 @@ namespace Models.Service
     {
         public static List<Role> GetRoles(IDb db)
         {
-            throw new NotImplementedException();
+            return db.GetRoles().ToList();
         }
 
     }
