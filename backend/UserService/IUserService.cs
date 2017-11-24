@@ -35,7 +35,7 @@ namespace UserService
 
         [OperationContract]
         [WebGet(UriTemplate = "Rule/{id}")]
-        Rule GetRule(string id);
+        List<Rule> GetRules(string category);
         // TODO: Add your service operations here
     }
 }

@@ -23,7 +23,7 @@ namespace UserService
         public void CreateUser(User user)
         {
             Models.Service.UserService.CreateUser(
-                RuleService.ValidateUser(user, this._db), this._db);
+                RuleService.ValidateUser(user), this._db);
         }
 
         public int DeleteUser(int userId)
@@ -37,9 +37,9 @@ namespace UserService
             return RoleService.GetRoles(this._db);
         }
 
-        public Rule GetRule(string id)
+        public List<Rule> GetRules(string category)
         {
-            return RuleService.GetRule(id, this._db);
+            return RuleService.GetRules(category);
         }
 
         public List<User> GetUsers(string name, string role)
@@ -49,7 +49,7 @@ namespace UserService
 
         public User UpdateUser(User user)
         {
-            return Models.Service.UserService.UpdateUser(RuleService.ValidateUser(user, this._db), this._db);
+            return Models.Service.UserService.UpdateUser(RuleService.ValidateUser(user), this._db);
         }
     }
 }

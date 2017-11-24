@@ -10,5 +10,8 @@ namespace Models
     {
         public string ValidExpression { get; set; }
         public List<string> BlackList { get; set; }
+
+        public string Category { get; set; }
     }
+
 }

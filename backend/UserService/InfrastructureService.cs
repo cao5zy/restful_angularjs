@@ -52,14 +52,14 @@ namespace UserService
 			}
 		}
 
-		public Models.Rule GetRule(System.String id){
+		public List<Models.Rule> GetRules(System.String category){
 			try{
-				this._log.Debug(new {id=id, _name="GetRule"});
-				return this._service.GetRule(id);
+				this._log.Debug(new {category=category, _name="GetRules"});
+				return this._service.GetRules(category);
 			}
 			catch(Exception ex)
 			{
-				this._log.Error(new { name = "GetRule", ex = ex});
+				this._log.Error(new { name = "GetRules", ex = ex});
 				return null;
 			}
 		}

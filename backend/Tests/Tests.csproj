@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="DecoratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RuleServiceTests.cs" />
     <Compile Include="UserServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
