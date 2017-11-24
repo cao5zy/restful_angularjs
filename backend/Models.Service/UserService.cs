@@ -19,7 +19,7 @@ namespace Models.Service
             return db.DeleteUserById(userId);
         }
 
-        public static List<User> GetUsers(string name, string role, IDb db)
+        public static List<User> GetUsers(int userId, string name, string role, IDb db)
         {
             var filterName = new Func<IEnumerable<User>, IEnumerable<User>>((users) =>
             {
@@ -35,7 +35,19 @@ namespace Models.Service
                                      select user : users;
             });
 
-            return filterName(filterRole(db.GetUsers(), GetRoleId(role, db))).ToList();
+            var filterUserId = new Func<IEnumerable<User>, IEnumerable<User>>((users) => {
+                return userId != 0 ? from user in users
+                                     where user.UserId == userId
+                                     select user : users;
+            });
+
+            return userId != 0 ? filterUserId(db.GetUsers()).ToList() 
+                : filterName(filterRole(db.GetUsers(), GetRoleId(role, db))).ToList();
+        }
+
+        public static User GetUserById(int userId, IDb db)
+        {
+            return GetUsers(userId, null, null, db).FirstOrDefault();
         }
 
         public static int GetRoleId(string role, IDb db)
@@ -45,13 +57,6 @@ namespace Models.Service
 
         public static User UpdateUser(User user, IDb db)
         {
-            var getOldUser = new Func<User>(() =>
-            {
-                return (from u in GetUsers(user.Username, null, db)
-                        where u.UserId == user.UserId
-                        select u).FirstOrDefault();
-            });
-
             var update = new Func<User>(() => {
                 db.DeleteUserById(user.UserId);
                 db.CreateUser(user);
@@ -64,7 +69,7 @@ namespace Models.Service
                     return update();
                 else
                     throw new ArgumentException("update user not found");
-            })(getOldUser());
+            })(GetUserById(user.UserId, db));
             
             
         }

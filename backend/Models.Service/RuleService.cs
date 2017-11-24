@@ -30,13 +30,14 @@ namespace Models.Service
                 new Rule
                 {
                     Category = "email",
-                    ValidExpression = "",
-                    BlackList = new List<string> { }
+                    ValidExpression = @"^[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?$",
+                    BlackList = new List<string> { },
+                    CanBeEmpty = true
                 },
                 new Rule
                 {
-                   Category = "phone",
-                   ValidExpression = "",
+                   Category = "mobile",
+                   ValidExpression = @"^\d{10}$",
                    BlackList = new List<string> { }
                 },
                 new Rule
@@ -48,18 +49,13 @@ namespace Models.Service
             }.FindAll(n => n.Category == category);
         }
 
-        public static int ValidateUserById(int userId, IDb db)
-        {
-            throw new NotImplementedException();
-        }
-
         public static bool CheckWithRule(string val, string category, out string reason)
         {
             reason = "";
             if (GetRules(category).Find(n =>
             {
-                return n.BlackList.Contains(val.ToLower())
-                 || !Regex.IsMatch(val, n.ValidExpression);
+                return (n.BlackList.Contains(val.ToLower())
+                    || !Regex.IsMatch(val, n.ValidExpression)) && !n.CanBeEmpty;
             }) != null)
             {
                 reason = category;

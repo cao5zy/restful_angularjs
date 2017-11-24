@@ -44,7 +44,7 @@ namespace Models.Service.Tests
                 mock.Setup(n => n.GetRoleId(role)).Returns(0);
                 mock.Setup(n => n.GetUsers()).Returns(new List<User> { new User { Username = "abc" } });
 
-                Assert.AreEqual(name, UserService.GetUsers(name, role, mock.Object).First().Username);
+                Assert.AreEqual(name, UserService.GetUsers(0, name, role, mock.Object).First().Username);
 
             })(new Moq.Mock<IDb>(), "abc", null);
         }
@@ -57,7 +57,7 @@ namespace Models.Service.Tests
                 mock.Setup(n => n.GetRoleId(role)).Returns(0);
                 mock.Setup(n => n.GetUsers()).Returns(new List<User> { new User { Username = "bc" } });
 
-                Assert.AreEqual(0, UserService.GetUsers(name, role, mock.Object).Count);
+                Assert.AreEqual(0, UserService.GetUsers(0, name, role, mock.Object).Count);
 
             })(new Moq.Mock<IDb>(), "abc", null);
         }

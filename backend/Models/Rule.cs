@@ -10,7 +10,7 @@ namespace Models
     {
         public string ValidExpression { get; set; }
         public List<string> BlackList { get; set; }
-
+        public bool CanBeEmpty { get; set; } = false;
         public string Category { get; set; }
     }
 

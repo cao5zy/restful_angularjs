@@ -55,5 +55,50 @@ namespace Models.Service.Tests
             Assert.IsTrue(RuleService.CheckWithRule("alanc210", "username", out reason));
             Assert.AreEqual("", reason);
         }
+
+        [TestMethod()]
+        public void CheckWithRuleTest_mobile_normal()
+        {
+            string reason = "";
+
+            Assert.IsTrue(RuleService.CheckWithRule("3232322122", "mobile", out reason));
+            Assert.AreEqual("", reason);
+        }
+
+        [TestMethod()]
+        public void CheckWithRuleTest_mobile_invalid()
+        {
+            string reason = "";
+
+            Assert.IsFalse(RuleService.CheckWithRule("323-2322122", "mobile", out reason));
+            Assert.AreEqual("mobile", reason);
+        }
+
+        [TestMethod()]
+        public void CheckWithRuleTest_mobile_empty()
+        {
+            string reason = "";
+
+            Assert.IsFalse(RuleService.CheckWithRule("", "mobile", out reason));
+            Assert.AreEqual("mobile", reason);
+        }
+
+        [TestMethod()]
+        public void CheckWithRuleTest_email_normal()
+        {
+            string reason = "";
+
+            Assert.IsTrue(RuleService.CheckWithRule("czy@163.com", "email", out reason));
+            Assert.AreEqual("", reason);
+        }
+
+        [TestMethod()]
+        public void CheckWithRuleTest_email_empty()
+        {
+            string reason = "";
+
+            Assert.IsTrue(RuleService.CheckWithRule("", "email", out reason));
+            Assert.AreEqual("", reason);
+        }
     }
 }
