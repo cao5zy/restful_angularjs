@@ -12,22 +12,31 @@ namespace Db.Service
         private user_dbEntities _dbContext = new user_dbEntities();
         public void CreateUser(User user)
         {
-            throw new NotImplementedException();
+            this._dbContext.User.Add(user);
+            this._dbContext.SaveChanges();
         }
 
-        public int DeleteUserById(int userId)
+        public int DeleteUser(User user)
         {
-            throw new NotImplementedException();
+            return new Func<int, int>(result =>
+            {
+                this._dbContext.SaveChanges();
+                return result;
+            })(this._dbContext.User.Remove(user) != null ? 1 : 0);
+
         }
 
-        public int GetRoleId(string role)
+        public int GetRoleId(string roleName)
         {
-            throw new NotImplementedException();
+            return (from role in this._dbContext.Role
+                    where role.Name == roleName
+                    select role.RoleId).FirstOrDefault();
         }
 
         public IEnumerable<Role> GetRoles()
         {
-            throw new NotImplementedException();
+            return from role in this._dbContext.Role
+                   select role;
         }
 
         public IEnumerable<User> GetUsers()

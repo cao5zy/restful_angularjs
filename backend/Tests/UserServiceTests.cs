@@ -27,13 +27,13 @@ namespace Models.Service.Tests
         [TestMethod()]
         public void DeleteUserTest()
         {
-            new Action<Moq.Mock<IDb>, int>((mock, id) =>
+            new Action<Moq.Mock<IDb>, User>((mock, user) =>
             {
-                mock.Setup(n => n.DeleteUserById(id)).Returns(1);
+                mock.Setup(n => n.DeleteUser(user)).Returns(1);
 
-                Assert.AreEqual(1, UserService.DeleteUser(id, mock.Object));
+                Assert.AreEqual(1, UserService.DeleteUser(user, mock.Object));
 
-            })(new Moq.Mock<IDb>(), 1);
+            })(new Moq.Mock<IDb>(), new User { UserId = 1, Username = "alan"});
         }
 
         [TestMethod()]
@@ -95,7 +95,7 @@ namespace Models.Service.Tests
             {
                 mock.Setup(n => n.GetUsers()).Returns(new List<User> { new User { UserId = 1, Username = "alan", FirstName="ZonYing"} });
                 mock.Setup(n => n.GetRoleId(null)).Returns(0);
-                mock.Setup(n => n.DeleteUserById(user.UserId));
+                mock.Setup(n => n.DeleteUser(user));
                 mock.Setup(n => n.CreateUser(user));
                 
                 

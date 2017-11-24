@@ -30,7 +30,7 @@ namespace UserService
         {
             return Models.Service.UserService.DeleteUser(
                 RuleService.ValidateUser(
-                    Models.Service.UserService.GetUserById(userId, this._db)).UserId
+                    Models.Service.UserService.GetUserById(userId, this._db))
                     , this._db);
         }
 

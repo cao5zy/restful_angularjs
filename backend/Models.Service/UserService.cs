@@ -14,9 +14,9 @@ namespace Models.Service
             db.CreateUser(user);
         }
 
-        public static int DeleteUser(int userId, IDb db)
+        public static int DeleteUser(User user, IDb db)
         {
-            return db.DeleteUserById(userId);
+            return db.DeleteUser(user);
         }
 
         public static List<User> GetUsers(int userId, string name, string role, IDb db)
@@ -57,8 +57,8 @@ namespace Models.Service
 
         public static User UpdateUser(User user, IDb db)
         {
-            var update = new Func<User>(() => {
-                db.DeleteUserById(user.UserId);
+            var update = new Func<User, User>((oldUser) => {
+                db.DeleteUser(oldUser);
                 db.CreateUser(user);
                 return user;
             });
@@ -66,7 +66,7 @@ namespace Models.Service
             return new Func<User, User>((oldUser) =>
             {
                 if (oldUser != null)
-                    return update();
+                    return update(oldUser);
                 else
                     throw new ArgumentException("update user not found");
             })(GetUserById(user.UserId, db));
