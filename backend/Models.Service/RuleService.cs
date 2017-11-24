@@ -9,26 +9,17 @@ namespace Models.Service
 {
     public static class RuleService
     {
-        public static Rule GetRule(string id) {
-            throw new NotImplementedException();
-        }
-
-        public static User ValidateUser(User user)
+        public static User ValidateUser(User user, IDb db)
         {
             throw new NotImplementedException();
         }
 
-        public static string ValidateUser(string id)
+        public static Rule GetRule(string id, IDb db)
         {
             throw new NotImplementedException();
         }
 
-        public static Rule GetRule(string id, IDb _db)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static int ValidateUserById(int userId)
+        public static int ValidateUserById(int userId, IDb db)
         {
             throw new NotImplementedException();
         }

@@ -23,13 +23,13 @@ namespace UserService
         public void CreateUser(User user)
         {
             Models.Service.UserService.CreateUser(
-                RuleService.ValidateUser(user), this._db);
+                RuleService.ValidateUser(user, this._db), this._db);
         }
 
         public int DeleteUser(int userId)
         {
             return Models.Service.UserService.DeleteUser(
-                RuleService.ValidateUserById(userId), this._db);
+                RuleService.ValidateUserById(userId, this._db), this._db);
         }
 
         public List<Role> GetRoles()
@@ -49,7 +49,7 @@ namespace UserService
 
         public User UpdateUser(User user)
         {
-            return Models.Service.UserService.UpdateUser(RuleService.ValidateUser(user), this._db);
+            return Models.Service.UserService.UpdateUser(RuleService.ValidateUser(user, this._db), this._db);
         }
     }
 }
