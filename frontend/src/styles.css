@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: "Lato", "Lucida Sans", Arial;
+}
+
+.title {
+    font-size: 38px;
+    font-weight: 700;
+}
+
+.sub-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.normal-text {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 29px;
+}
+
+.comment {
+    font-size: 9px;
+}
+
+.word-space {
+    margin-left: 5px;
+}

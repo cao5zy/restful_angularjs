@@ -1,0 +1,1 @@
+docker -d --name md-dev -p 4200:4200 -it node:6.10.3 /bin/bash

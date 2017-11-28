@@ -1,0 +1,9 @@
+#mainContainer{
+}
+
+#title-img{
+    background-image: url(../resources/logo.jpg);
+    width: 141px;
+    height: 24px;
+    margin: 15px 2px;
+}
