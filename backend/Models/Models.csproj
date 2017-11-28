@@ -90,6 +90,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="MembersList.html">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MembersList.tt</DependentUpon>
+    </Content>
+    <Content Include="MembersList.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MembersList.html</LastGenOutput>
+    </Content>
     <Content Include="Models.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Models.edmx</DependentUpon>
