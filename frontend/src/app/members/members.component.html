@@ -15,8 +15,15 @@
 					</tr>
 				  </thead>
 				  <tbody>
-				  	<tr>
-				  		
+				  	<tr *ngFor="let obj of this.memberService({method:'get', param:{}}) | async">
+				  		<td>{{obj.UserId}}</td>
+						<td>{{obj.Role.Name}}</td>
+						<td>{{obj.Username}}</td>
+						<td>{{obj.FirstName}}</td>
+						<td>{{obj.LastName}}</td>
+						<td>{{obj.Mobile}}</td>
+						<td>{{obj.Email}}</td>
+						<td>{{obj.DateOfBirth}}</td>
 				  	</tr>
 				  </tbody>
 				</table> 
