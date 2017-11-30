@@ -31,10 +31,10 @@ namespace UserService
 
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "User/{userId}")]
-        int DeleteUser(int userId);
+        int DeleteUser(string userId);
 
         [OperationContract]
-        [WebGet(UriTemplate = "Rule/{id}")]
+        [WebGet(UriTemplate = "Rule/{category}")]
         List<Rule> GetRules(string category);
         // TODO: Add your service operations here
     }

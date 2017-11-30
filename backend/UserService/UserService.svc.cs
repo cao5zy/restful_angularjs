@@ -26,11 +26,11 @@ namespace UserService
                 RuleService.ValidateUser(user), this._db);
         }
 
-        public int DeleteUser(int userId)
+        public int DeleteUser(string userId)
         {
             return Models.Service.UserService.DeleteUser(
                 RuleService.ValidateUser(
-                    Models.Service.UserService.GetUserById(userId, this._db))
+                    Models.Service.UserService.GetUserById(int.Parse(userId), this._db))
                     , this._db);
         }
 

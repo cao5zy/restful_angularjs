@@ -28,7 +28,7 @@ namespace UserService
 			}
 		}
 
-		public System.Int32 DeleteUser(System.Int32 userId){
+		public System.Int32 DeleteUser(string userId){
 			try{
 				this._log.Debug(new {userId=userId, _name="DeleteUser"});
 				return this._service.DeleteUser(userId);
