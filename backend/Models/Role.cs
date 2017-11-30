@@ -13,8 +13,8 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    using System.ServiceModel;
-    [ServiceContract]
+    using System.Runtime.Serialization;
+    [DataContract]
     public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,7 +23,9 @@ namespace Models
             this.User = new HashSet<User>();
         }
     
+    	[DataMember]
         public int RoleId { get; set; }
+    	[DataMember]
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -13,17 +13,25 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    using System.ServiceModel;
-    [ServiceContract]
+    using System.Runtime.Serialization;
+    [DataContract]
     public partial class User
     {
+    	[DataMember]
         public int UserId { get; set; }
+    	[DataMember]
         public int RoleId { get; set; }
+    	[DataMember]
         public string Username { get; set; }
+    	[DataMember]
         public string FirstName { get; set; }
+    	[DataMember]
         public string LastName { get; set; }
+    	[DataMember]
         public string Mobile { get; set; }
+    	[DataMember]
         public string Email { get; set; }
+    	[DataMember]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
     
         public virtual Role Role { get; set; }

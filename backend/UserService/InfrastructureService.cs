@@ -67,7 +67,8 @@ namespace UserService
 		public List<Models.User> GetUsers(System.String name,System.String role){
 			try{
 				this._log.Debug(new {name=name, role=role, _name="GetUsers"});
-				return this._service.GetUsers(name,role);
+				var rs = this._service.GetUsers(name,role);
+                return rs;
 			}
 			catch(Exception ex)
 			{
