@@ -46,7 +46,7 @@ namespace UserService
 
         public List<User> GetUsers(string name, string role)
         {
-            return Models.Service.UserService.GetUsers(0, name, role, this._db);
+            return Models.Service.UserService.GetUsers(0, name == "_default" ? "" : name, role == "_default" ? "": role, this._db);
         }
 
         public User UpdateUser(User user)

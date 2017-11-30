@@ -28,6 +28,8 @@ namespace UserService
                 builder.Register(container => new InfrastructureService(container.ResolveNamed<IUserService>(namedService)
                     , container.Resolve<log4net.ILog>()));
 
+                log4net.Config.XmlConfigurator.Configure();
+
                 return builder.Build();
             })("userService", new ContainerBuilder());
         }
