@@ -8,6 +8,7 @@ import { HttpService, Service } from './services';
 import { RouterModule, Routes } from '@angular/router';
 import { MembersComponent } from './members/members.component';
 import { RolesComponent } from './roles/roles.component';
+import { AppConfig } from './appConfig';
 
 const appRoutes: Routes = [
   { path: 'members', component: MembersComponent },
@@ -29,6 +30,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes)
   ],
   bootstrap: [AppComponent],
-  providers: []
+  providers: [AppConfig, {provide: Service, useClass: HttpService}]
 })
 export class AppModule { }

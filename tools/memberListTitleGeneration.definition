@@ -1,0 +1,10 @@
+{
+	"lineReader":{
+		"pattern":"^\\s*public\\s[\\w.\\<\\>]+\\s\\w+\\s\\{\\sget\\;\\sset\\;\\s\\}\\s*$"
+	},
+	"keyBuilder":[{
+		"keyName":"name",
+		"keyPattern":"^\\s*public\\s[\\w.\\<\\>]+\\s(\\w+)\\s\\{\\sget\\;\\sset\\;\\s\\}\\s*$",
+		"groupNum": 0
+	}]
+}

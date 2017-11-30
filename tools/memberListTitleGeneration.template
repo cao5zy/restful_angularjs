@@ -1,0 +1,3 @@
+{% for obj in objs%}
+<th>{{obj.name}}</th>
+{% endfor %}
