@@ -9,11 +9,11 @@
 
 <# var codeHelper = new CodeHelper();#>
 <!-- header -->
-<th>
+<tr>
 <# foreach(var fieldName in codeHelper.GetHeaders()){#>
-	<td><#=fieldName#></td>
+	<th><#=fieldName#></th>
 <#}#>
-</th>
+</tr>
 
 <!-- row -->
 <tr>
