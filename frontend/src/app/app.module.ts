@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { HttpModule } from '@angular/http';
-import { HttpService, Service, MockAppViewModelService } from './services';
+import { HttpService, Service } from './services';
 import { RouterModule, Routes } from '@angular/router';
 import { MembersComponent } from './members/members.component';
 import { RolesComponent } from './roles/roles.component';
