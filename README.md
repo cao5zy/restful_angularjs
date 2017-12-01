@@ -19,6 +19,7 @@
 11. Linq
 12. Microsoft Sql Server
 13. IIS
+14. 自动化部署
 
 ## 项目文件夹介绍
 
@@ -27,6 +28,9 @@
 |- tools \# 辅助工具脚本  
 |- dbscript \# 数据库初始化脚本和Schema定义
 
+## AngularJs 2
+
+通过cli来创建项目以及创建组件，Service等。[参考](https://github.com/angular/angular-cli)
 
 
 
