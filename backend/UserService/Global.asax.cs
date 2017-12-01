@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -34,5 +35,41 @@ namespace UserService
             })("userService", new ContainerBuilder());
         }
 
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            var getDomainName = new Func<string>(() =>
+            {
+                return new Func<string, string>(setting =>
+                {
+                    return setting != null ? setting.ToLower() : "";
+                })(HttpContext.Current.Request.Headers["Origin"]);
+            });
+
+            var getConfigedDomains = new Func<List<string>>(() =>
+            {
+                return new Func<string, List<string>>((setting) =>
+                {
+                    return (setting != null ? setting.Split(',').ToList() : new List<string>())
+                    .ConvertAll(n=>n.ToLower());
+                })
+                (ConfigurationManager.AppSettings["allowedDomains"]);
+
+            });
+
+            var isDomainAllowed = new Func<bool>(() =>
+            {
+                return string.IsNullOrEmpty(getDomainName()) ? false :
+                getConfigedDomains().Contains(getDomainName());
+            });
+
+            var handleResponse = new Action<string, string>((allowedmethods, domain) => {
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", domain);
+                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", allowedmethods);
+            });
+
+            if (isDomainAllowed())
+                handleResponse("POST, PUT, DELETE, GET", getDomainName());
+        }
+      
     }
 }

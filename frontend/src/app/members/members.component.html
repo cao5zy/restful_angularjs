@@ -15,7 +15,7 @@
 					</tr>
 				  </thead>
 				  <tbody>
-				  	<tr *ngFor="let obj of this.memberService({method:'get', param:{}}) | async">
+				  	<tr *ngFor="let obj of this.memberList | async">
 				  		<td>{{obj.UserId}}</td>
 						<td>{{obj.Role.Name}}</td>
 						<td>{{obj.Username}}</td>

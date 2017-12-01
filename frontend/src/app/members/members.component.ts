@@ -20,7 +20,7 @@ export class MembersComponent implements OnInit {
   }
 
   ngOnInit() {
-  	//this.memberList = this.memberService({method:"get", param: {}});
+  	this.memberList = this.memberService({method:"get", param: {}});
   }
 
 }

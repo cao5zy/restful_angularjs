@@ -4,7 +4,7 @@ import * as _ from 'lodash';
 export class MemberDescriptor extends Descriptor {
   constructor(){
     super();
-    this.urn = "interface";
+    this.urn = "User";
   }
 
   getConvert(obj: any):any{
