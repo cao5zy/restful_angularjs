@@ -22,13 +22,12 @@
 
 ## 项目文件夹介绍
 
-|- frontend \# 前端代码
-
-|- backend \# 后端服务器代码
-
-|- tools \# 辅助工具脚本
-
+|- frontend \# 前端代码  
+|- backend \# 后端服务器代码  
+|- tools \# 辅助工具脚本  
 |- dbscript \# 数据库初始化脚本和Schema定义
+
+
 
 
 
