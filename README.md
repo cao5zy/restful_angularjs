@@ -10,4 +10,13 @@
 3. 跨域问题
 4. 依赖注入应用(Autofac)
 5. 服务端接口扩展
+6. TT
+8. EntityFramework
+9. RESTFul
+10. 函数式编程
+11. Linq
+12. Microsoft Sql Server
+13. IIS
+
+
 
