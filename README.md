@@ -43,7 +43,7 @@
 
 #### IE兼容
 
-[参考Stackoverflow](https://stackoverflow.com/questions/35140718/angular-2-4-not-working-in-ie11) 
+[参考Stackoverflow](https://stackoverflow.com/questions/35140718/angular-2-4-not-working-in-ie11)  
 [参考AngularJs 的Brower support](https://angular.io/guide/browser-support)
 
 #### Observable
