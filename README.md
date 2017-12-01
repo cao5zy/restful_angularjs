@@ -32,6 +32,28 @@
 
 通过cli来创建项目以及创建组件，Service等。[参考](https://github.com/angular/angular-cli)
 
+### 常用命令
+
+1. ng new 项目名称 \# 创建项目
+2. ng serve \# 启动项目 
+3. ng build \# 编译项目
+4. ng generate component 组件名称 \# 创建组件，并将其添加到app.module.ts内
+
+### 技术要点
+
+#### IE兼容
+
+[参考Stackoverflow](https://stackoverflow.com/questions/35140718/angular-2-4-not-working-in-ie11) 
+[参考AngularJs 的Brower support](https://angular.io/guide/browser-support)
+
+#### Observable
+
+#### Route
+
+#### ServiceProvider
+
+#### 样式使用
+
 
 
 
