@@ -41,8 +41,19 @@ namespace Models.Service
                                      select user : users;
             });
 
-            return userId != 0 ? filterUserId(db.GetUsers()).ToList() 
-                : filterName(filterRole(db.GetUsers(), GetRoleId(role, db))).ToList();
+            return userId != 0 ? filterUserId(db.GetUsers()).ToList()
+                : filterName(filterRole(db.GetUsers(), GetRoleId(role, db)))
+                .ToList()
+                .ConvertAll(n=>new User { UserId = n.UserId,
+                    RoleId = n.RoleId,
+                    Role = new Role { RoleId = n.Role.RoleId, Name = n.Role.Name },
+                    Username = n.Username,
+                    FirstName = n.FirstName,
+                    LastName = n.LastName,
+                    Email = n.Email,
+                    Mobile = n.Mobile,
+                    DateOfBirth = n.DateOfBirth
+                });
         }
 
         public static User GetUserById(int userId, IDb db)
