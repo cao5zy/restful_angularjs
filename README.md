@@ -20,6 +20,7 @@
 12. Microsoft Sql Server
 13. IIS
 14. 自动化部署
+15. 日志配置
 
 ## 项目文件夹介绍
 
