@@ -5,8 +5,9 @@
 
 ## 技术要点
 
-. AngularJs 2
-. WCF Restful Service
-. 跨域问题
-. 依赖注入应用(Autofac)
-. 服务端接口扩展
+1. AngularJs 2
+2. WCF Restful Service
+3. 跨域问题
+4. 依赖注入应用(Autofac)
+5. 服务端接口扩展
+
