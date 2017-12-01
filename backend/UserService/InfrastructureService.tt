@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using Models;
+using System.ServiceModel.Web;
 
 <# var codeHelper = new CodeHelper(); #>
 namespace UserService
@@ -27,6 +28,8 @@ namespace UserService
 <# foreach(var name in codeHelper.GetMethodNames()){#>
 
 		public <#=codeHelper.GetReturnTypeName(name)#> <#=name#>(<#=codeHelper.GetParamDeclarations(name)#>){
+			var ctx = WebOperationContext.Current;
+			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
 				this._log.Debug(new {<# var ls = (from paramName in codeHelper.GetParamNames(name)
 				select new { name = paramName, val = paramName}).ToList();
@@ -37,6 +40,8 @@ namespace UserService
 			}
 			catch(Exception ex)
 			{
+				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
+				ctx.OutgoingResponse.StatusDescription = ex.Message;  
 				this._log.Error(new { name = "<#=name#>", ex = ex});
 				<#=codeHelper.GetDefaultReturn(name)#>
 			}

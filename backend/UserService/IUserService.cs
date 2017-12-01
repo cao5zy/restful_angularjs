@@ -18,7 +18,7 @@ namespace UserService
         List<Role> GetRoles();
 
         [OperationContract]
-        [WebGet(UriTemplate ="User/{id=_default}/{role=_default}")]
+        [WebGet(UriTemplate ="User/{id=_default}/{role=_default}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         List<User> GetUsers(string id, string role);
 
         [OperationContract]

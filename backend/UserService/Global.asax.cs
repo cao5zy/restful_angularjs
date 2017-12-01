@@ -15,7 +15,7 @@ namespace UserService
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            AutofacHostFactory.Container = new Func<string, ContainerBuilder, IContainer>((namedService, builder) =>
+            AutofacServiceHostFactory.Container = new Func<string, ContainerBuilder, IContainer>((namedService, builder) =>
             {
                 builder.RegisterType<UserService>()
                     .Named<IUserService>(namedService);

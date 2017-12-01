@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Models;
+using System.ServiceModel.Web;
 
 namespace UserService
 {
@@ -17,54 +18,72 @@ namespace UserService
         }
 
 		public void CreateUser(Models.User user){
+			var ctx = WebOperationContext.Current;
+			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
 				this._log.Debug(new {user=user, _name="CreateUser"});
 				 this._service.CreateUser(user);
 			}
 			catch(Exception ex)
 			{
+				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
+				ctx.OutgoingResponse.StatusDescription = ex.Message;  
 				this._log.Error(new { name = "CreateUser", ex = ex});
 				
 			}
 		}
 
-		public System.Int32 DeleteUser(string userId){
+		public System.Int32 DeleteUser(System.String userId){
+			var ctx = WebOperationContext.Current;
+			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
 				this._log.Debug(new {userId=userId, _name="DeleteUser"});
 				return this._service.DeleteUser(userId);
 			}
 			catch(Exception ex)
 			{
+				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
+				ctx.OutgoingResponse.StatusDescription = ex.Message;  
 				this._log.Error(new { name = "DeleteUser", ex = ex});
 				return 0;
 			}
 		}
 
 		public List<Models.Role> GetRoles(){
+			var ctx = WebOperationContext.Current;
+			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
 				this._log.Debug(new {_name="GetRoles"});
 				return this._service.GetRoles();
 			}
 			catch(Exception ex)
 			{
+				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
+				ctx.OutgoingResponse.StatusDescription = ex.Message;  
 				this._log.Error(new { name = "GetRoles", ex = ex});
 				return null;
 			}
 		}
 
 		public List<Models.Rule> GetRules(System.String category){
+			var ctx = WebOperationContext.Current;
+			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
 				this._log.Debug(new {category=category, _name="GetRules"});
 				return this._service.GetRules(category);
 			}
 			catch(Exception ex)
 			{
+				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
+				ctx.OutgoingResponse.StatusDescription = ex.Message;  
 				this._log.Error(new { name = "GetRules", ex = ex});
 				return null;
 			}
 		}
 
 		public List<Models.User> GetUsers(System.String name,System.String role){
+			var ctx = WebOperationContext.Current;
+			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
 				this._log.Debug(new {name=name, role=role, _name="GetUsers"});
 				var rs = this._service.GetUsers(name,role);
@@ -72,18 +91,24 @@ namespace UserService
 			}
 			catch(Exception ex)
 			{
+				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
+				ctx.OutgoingResponse.StatusDescription = ex.Message;  
 				this._log.Error(new { name = "GetUsers", ex = ex});
 				return null;
 			}
 		}
 
 		public Models.User UpdateUser(Models.User user){
+			var ctx = WebOperationContext.Current;
+			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
 				this._log.Debug(new {user=user, _name="UpdateUser"});
 				return this._service.UpdateUser(user);
 			}
 			catch(Exception ex)
 			{
+				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
+				ctx.OutgoingResponse.StatusDescription = ex.Message;  
 				this._log.Error(new { name = "UpdateUser", ex = ex});
 				return null;
 			}
