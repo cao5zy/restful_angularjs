@@ -15,7 +15,7 @@
 					</tr>
 				  </thead>
 				  <tbody>
-				  	<tr *ngFor="let obj of this.memberList | async">
+				  	<tr *ngFor="let obj of this.memberList | async" (click)="selectUser(obj, template)">
 				  		<td>{{obj.UserId}}</td>
 						<td>{{obj.Role.Name}}</td>
 						<td>{{obj.Username}}</td>
@@ -30,3 +30,27 @@
 			</div>
 		</div>
 	</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Service Project</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="form-horizontal">
+      <fieldset>
+	<legend>UserInfo</legend>
+	<app-user-info-panel #userPanel [user]="selectedUser"></app-user-info-panel>
+	
+	<div class="form-group">
+	  <div class="col-lg-10 col-lg-offset-2">
+	    <button type="reset" class="btn btn-default" (click)="modal.hide()">Cancel</button>
+	    <button type="submit" class="btn btn-primary" (click)="userPanel.saveEntry();modal.hide()" >Submit</button>
+	  </div>
+	</div>
+      </fieldset>
+      </form>
+  </div>
+</ng-template>

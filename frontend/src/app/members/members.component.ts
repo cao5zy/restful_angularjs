@@ -14,6 +14,8 @@ import { MemberDescriptor } from './../models';
 export class MembersComponent implements OnInit {
   memberList: Observable<Array<any>> = null; 
   memberService: any = null;
+  modal:BsModalRef;
+  selectedUser:any = null;
   constructor(private modalService: BsModalService,
     private _service: Service) {
   		this.memberService = useService(new MemberDescriptor(), this._service);
@@ -23,4 +25,8 @@ export class MembersComponent implements OnInit {
   	this.memberList = this.memberService({method:"get", param: {}});
   }
 
+  selectUser(user, template){
+    this.selectUser = user;
+    this.modal = this.modalService.show(template);
+  }
 }
