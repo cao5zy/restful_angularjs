@@ -14,7 +14,7 @@ namespace UserService
     public interface IUserService
     {
         [OperationContract]
-        [WebGet(UriTemplate="Roles")]
+        [WebGet(UriTemplate="Role", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         List<Role> GetRoles();
 
         [OperationContract]
