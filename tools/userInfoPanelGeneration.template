@@ -1,0 +1,8 @@
+{% for obj in objs%}
+<div class="form-group">
+  <label for="{{obj.name}}" class="col-lg-4 control-label">{{obj.name}}</label>
+  <div class="col-lg-8">
+    <input class="form-control" id="{{obj.name}}" placeholder="Name of {{obj.name}}" type="text" name="{{obj.name}}" [(ngModel)]="_user.{{obj.name}}">
+  </div>
+</div>
+{% endfor %}

@@ -26,7 +26,7 @@ export class MembersComponent implements OnInit {
   }
 
   selectUser(user, template){
-    this.selectUser = user;
+    this.selectedUser = user;
     this.modal = this.modalService.show(template);
   }
 }

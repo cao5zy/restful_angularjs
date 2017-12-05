@@ -15,7 +15,7 @@
 					</tr>
 				  </thead>
 				  <tbody>
-				  	<tr *ngFor="let obj of this.memberList | async" (click)="selectUser(obj, template)">
+				  	<tr *ngFor="let obj of this.memberList | async; let i = index;" (click)="selectUser(obj, template)">
 				  		<td>{{obj.UserId}}</td>
 						<td>{{obj.Role.Name}}</td>
 						<td>{{obj.Username}}</td>

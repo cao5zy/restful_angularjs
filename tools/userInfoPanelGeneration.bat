@@ -1,0 +1,1 @@
+python "c:\cygwin64\home\caozon\code_transformer\main.py" -t "C:\cygwin64\home\caozon\restful_angularjs\tools\userInfoPanelGeneration.template" -d "C:\cygwin64\home\caozon\restful_angularjs\tools\memberListTitleGeneration.definition" -f "C:\cygwin64\home\caozon\restful_angularjs\backend\Models\User.cs"

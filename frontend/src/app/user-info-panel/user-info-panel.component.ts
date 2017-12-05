@@ -12,7 +12,10 @@ export class UserInfoPanelComponent implements OnInit {
 
   private _user: any;
   @Input() set user(user:any){
-  	this._user = _.extend({}, user);
+  	console.log('user panel:', user);
+  	this._user = _.extend({
+  		Username:""
+  	}, user);
   }
   
   ngOnInit() {
