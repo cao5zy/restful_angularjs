@@ -10,11 +10,18 @@ export class UserInfoPanelComponent implements OnInit {
 
   constructor() { }
 
-  private _user: any;
+  public editUser: any;
   @Input() set user(user:any){
-  	console.log('user panel:', user);
-  	this._user = _.extend({
-  		Username:""
+  	this.editUser = _.extend({
+      "DateOfBirthStr": "",
+      "Email": "",
+      "FirstName": "",
+      "LastName": "",
+      "Mobile": "",
+      "Role": null,
+      "RoleId": null,
+      "UserId": null,
+      "Username": ""
   	}, user);
   }
   
