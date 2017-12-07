@@ -1,4 +1,4 @@
-import { TemplateRef, ViewChild, Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { TemplateRef, EventEmitter, ViewChild, Output, Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import * as _ from 'lodash';
 
 @Component({
@@ -9,8 +9,8 @@ import * as _ from 'lodash';
 export class UserInfoPanelComponent implements OnInit {
 
   constructor() { }
+  editUser:any = null;
 
-  public editUser: any;
   @Input() set user(user:any){
   	this.editUser = _.extend({
       "DateOfBirthStr": "",
@@ -25,7 +25,18 @@ export class UserInfoPanelComponent implements OnInit {
   	}, user);
   }
   
+  @Output() onHide: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onSave: EventEmitter<string> = new EventEmitter<string>();
   ngOnInit() {
   }
 
+
+  saveUser(){
+    this.onSave.next("");
+    //this.memberService({method:'post', param:this.editUser});
+  }
+
+  hide(){
+    this.onHide.next("");
+  }
 }

@@ -54,3 +54,10 @@
     <input class="form-control" id="DateOfBirth" placeholder="DateOfBirth" type="text" name="DateOfBirth" [(ngModel)]="editUser.DateOfBirthStr">
   </div>
 </div>
+
+<div class="form-group">
+  <div class="col-lg-10 col-lg-offset-2">
+    <button type="reset" class="btn btn-default" (click)="hide()">Cancel</button>
+    <button type="submit" class="btn btn-primary" (click)="saveUser()" >Submit</button>
+  </div>
+</div>

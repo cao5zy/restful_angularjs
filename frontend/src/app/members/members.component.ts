@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import useService from './../services/useService';
 import { Service } from './../services';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { MemberDescriptor } from './../models';
+import { UserInfoPanelComponent } from './../user-info-panel/user-info-panel.component';
 
 @Component({
   selector: 'app-members',
@@ -16,6 +17,7 @@ export class MembersComponent implements OnInit {
   memberService: any = null;
   modal:BsModalRef;
   selectedUser:any = null;
+
   constructor(private modalService: BsModalService,
     private _service: Service) {
   		this.memberService = useService(new MemberDescriptor(), this._service);

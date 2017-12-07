@@ -41,15 +41,10 @@
   <div class="modal-body">
     <form class="form-horizontal">
       <fieldset>
-	<legend>UserInfo</legend>
-	<app-user-info-panel #userPanel [user]="selectedUser"></app-user-info-panel>
+		<legend>UserInfo</legend>
+		<app-user-info-panel #userPanel [user]="selectedUser" (onHide)='modal.hide()' (onSave)='modal.hide()'></app-user-info-panel>
 	
-	<div class="form-group">
-	  <div class="col-lg-10 col-lg-offset-2">
-	    <button type="reset" class="btn btn-default" (click)="modal.hide()">Cancel</button>
-	    <button type="submit" class="btn btn-primary" (click)="userPanel.saveEntry();modal.hide()" >Submit</button>
-	  </div>
-	</div>
+
       </fieldset>
       </form>
   </div>
