@@ -14,6 +14,17 @@ CREATE TABLE [dbo].[Role](
 ) ON [PRIMARY]
 
 GO
+
+
+CREATE SCHEMA IDS;  
+GO  
+
+CREATE SEQUENCE IDS.UserId  
+    START WITH 5  
+    INCREMENT BY 1 ;  
+GO  
+
+
 /****** Object:  Table [dbo].[User]    Script Date: 13/11/2017 5:16:20 PM ******/
 SET ANSI_NULLS ON
 GO
@@ -50,3 +61,4 @@ REFERENCES [dbo].[Role] ([RoleId])
 GO
 ALTER TABLE [dbo].[User] CHECK CONSTRAINT [FK_User_Role]
 GO
+

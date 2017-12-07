@@ -33,7 +33,7 @@ namespace Models.Service.Tests
 
                 Assert.AreEqual(1, UserService.DeleteUser(user, mock.Object));
 
-            })(new Moq.Mock<IDb>(), new User { UserId = 1, Username = "alan"});
+            })(new Moq.Mock<IDb>(), new User { UserId = 1, Username = "alan" });
         }
 
         [TestMethod()]
@@ -42,7 +42,7 @@ namespace Models.Service.Tests
             new Action<Moq.Mock<IDb>, string, string>((mock, name, role) =>
             {
                 mock.Setup(n => n.GetRoleId(role)).Returns(0);
-                mock.Setup(n => n.GetUsers()).Returns(new List<User> { new User { Username = "abc" } });
+                mock.Setup(n => n.GetUsers()).Returns(new List<User> { new User { Username = "abc", Role = new Role { Name = "admin", RoleId = 1 } } });
 
                 Assert.AreEqual(name, UserService.GetUsers(0, name, role, mock.Object).First().Username);
 
@@ -86,23 +86,23 @@ namespace Models.Service.Tests
             })(new Moq.Mock<IDb>(), null, 0);
         }
 
- 
+
 
         [TestMethod()]
         public void UpdateUserTest()
         {
             new Action<Moq.Mock<IDb>, User>((mock, user) =>
             {
-                mock.Setup(n => n.GetUsers()).Returns(new List<User> { new User { UserId = 1, Username = "alan", FirstName="ZonYing"} });
+                mock.Setup(n => n.GetUsers()).Returns(new List<User> { new User { UserId = 1, Username = "alan", FirstName = "ZonYing" } });
                 mock.Setup(n => n.GetRoleId(null)).Returns(0);
                 mock.Setup(n => n.DeleteUser(user));
                 mock.Setup(n => n.CreateUser(user));
-                
-                
+
+
                 Assert.AreEqual(user.FirstName, UserService.UpdateUser(user, mock.Object).FirstName);
 
-            })(new Moq.Mock<IDb>(), 
-            new User { UserId = 1, Username = "alan", FirstName="Zongying"});
+            })(new Moq.Mock<IDb>(),
+            new User { UserId = 1, Username = "alan", FirstName = "Zongying" });
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Db.Service
         int GetRoleId(string role);
 
         int DeleteUser(User user);
-
+        int NewUserId();
         IEnumerable<Role> GetRoles();
     }
 }

@@ -11,7 +11,16 @@ namespace Models.Service
     {
         public static void CreateUser(User user, IDb db)
         {
-            db.CreateUser(user);
+            db.CreateUser(new User {
+                UserId = db.NewUserId(),
+                Username = user.Username,
+                RoleId = user.RoleId,
+                Mobile = user.Mobile,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                DateOfBirth = user.DateOfBirth
+            });
         }
 
         public static int DeleteUser(User user, IDb db)
