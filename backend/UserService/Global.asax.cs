@@ -13,6 +13,10 @@ namespace UserService
 {
     public class Global : System.Web.HttpApplication
     {
+        public void Application_Error(object sender, EventArgs e)
+        {
+            AutofacServiceHostFactory.Container.Resolve<log4net.ILog>().Error(new { sender = sender, arg = e});
+        }
 
         protected void Application_Start(object sender, EventArgs e)
         {
