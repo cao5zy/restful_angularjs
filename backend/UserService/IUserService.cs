@@ -14,15 +14,16 @@ namespace UserService
     public interface IUserService
     {
         [OperationContract]
-        [WebGet(UriTemplate="Role", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        [WebGet(UriTemplate = "Role", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         List<Role> GetRoles();
 
         [OperationContract]
-        [WebGet(UriTemplate ="User/{id=_default}/{role=_default}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
+        [WebGet(UriTemplate = "User/{id=_default}/{role=_default}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         List<User> GetUsers(string id, string role);
 
         [OperationContract]
-        [WebInvoke(Method = "POST", UriTemplate = "User")]
+        [WebInvoke(Method = "POST", UriTemplate = "User", RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         void CreateUser(User user);
 
         [OperationContract]
