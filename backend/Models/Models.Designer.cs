@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\cygwin64\home\caozon\restful_angularjs\backend\Models\Models.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\caozon\Documents\projects\restful_angularjs\backend\Models\Models.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

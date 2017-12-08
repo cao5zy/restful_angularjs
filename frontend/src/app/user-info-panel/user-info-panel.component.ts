@@ -16,6 +16,7 @@ export class UserInfoPanelComponent implements OnInit {
   callUserService: any = null;
   callRoleService: any = null;
   roleList:Array<any> = null;
+  private originalUser: any = null;
 
   constructor(private _service: Service) { 
       this.callUserService = useService(new CommonDescriptor("User"), this._service);
@@ -23,6 +24,8 @@ export class UserInfoPanelComponent implements OnInit {
   }
 
   @Input() set user(user:any){
+    this.originalUser = user;
+
   	this.editUser = _.extend({
       "DateOfBirthStr": "",
       "Email": "",
@@ -44,9 +47,12 @@ export class UserInfoPanelComponent implements OnInit {
 
 
   saveUser(){
-
-    this.callUserService({method:'post', param:this.editUser})
+    if (this.originalUser == null)
+      this.callUserService({method:'post', param:this.editUser});
+    else
+      this.callUserService({method:'put', param:this.editUser})
       .subscribe(res=>{console.log(res);});
+    
     this.onSave.next("");
   }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import useService from './../services/useService';
 import { Service } from './../services';
-import { RoleDescriptor } from './../models';
+import { CommonDescriptor } from './../models';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -13,7 +13,7 @@ export class RolesComponent implements OnInit {
   roleList: Observable<Array<any>> = null;
   roleService: any = null;
   constructor(private _service: Service) {
-  	this.roleService = useService(new RoleDescriptor(), this._service);
+  	this.roleService = useService(new CommonDescriptor("Role"), this._service);
   }
 
   ngOnInit() {

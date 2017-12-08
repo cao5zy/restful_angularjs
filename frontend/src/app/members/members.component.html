@@ -33,7 +33,7 @@
 
 <ng-template #template>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Service Project</h4>
+    <h4 class="modal-title pull-left">UserInfo</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -42,9 +42,7 @@
     <form class="form-horizontal">
       <fieldset>
 		<legend>UserInfo</legend>
-		<app-user-info-panel #userPanel [user]="selectedUser" (onHide)='modal.hide()' (onSave)='modal.hide()'></app-user-info-panel>
-	
-
+		<app-user-info-panel #userPanel [user]="selectedUser" (onHide)='modal.hide()' (onSave)='modal.hide();loadMembers()'></app-user-info-panel>
       </fieldset>
       </form>
   </div>

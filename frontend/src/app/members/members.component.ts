@@ -24,6 +24,10 @@ export class MembersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadMembers();
+  }
+
+  loadMembers(){
   	this.memberList = this.memberService({method:"get", param: {}});
   }
 
