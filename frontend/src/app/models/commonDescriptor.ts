@@ -2,9 +2,9 @@ import { Descriptor } from './descriptor';
 import * as _ from 'lodash';
 
 export class CommonDescriptor extends Descriptor {
-  constructor(){
+  constructor(urn: string){
     super();
-    this.urn = "User";
+    this.urn = urn;
   }
 
   getConvert(obj: any):any{

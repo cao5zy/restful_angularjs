@@ -13,10 +13,13 @@ import { CommonDescriptor } from './../models';
 export class UserInfoPanelComponent implements OnInit {
 
   editUser:any = null;
-  memberService: any = null;
+  callUserService: any = null;
+  callRoleService: any = null;
+  roleList:Array<any> = null;
 
   constructor(private _service: Service) { 
-      this.memberService = useService(new CommonDescriptor(), this._service);
+      this.callUserService = useService(new CommonDescriptor("User"), this._service);
+      this.callRoleService = useService(new CommonDescriptor("Role"), this._service);
   }
 
   @Input() set user(user:any){
@@ -36,12 +39,13 @@ export class UserInfoPanelComponent implements OnInit {
   @Output() onHide: EventEmitter<string> = new EventEmitter<string>();
   @Output() onSave: EventEmitter<string> = new EventEmitter<string>();
   ngOnInit() {
+    this.roleList = this.callRoleService({method:'get', param:{}});
   }
 
 
   saveUser(){
 
-    this.memberService({method:'post', param:this.editUser})
+    this.callUserService({method:'post', param:this.editUser})
       .subscribe(res=>{console.log(res);});
     this.onSave.next("");
   }

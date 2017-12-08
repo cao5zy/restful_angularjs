@@ -20,7 +20,7 @@ export class MembersComponent implements OnInit {
 
   constructor(private modalService: BsModalService,
     private _service: Service) {
-  		this.memberService = useService(new CommonDescriptor(), this._service);
+  		this.memberService = useService(new CommonDescriptor("User"), this._service);
   }
 
   ngOnInit() {

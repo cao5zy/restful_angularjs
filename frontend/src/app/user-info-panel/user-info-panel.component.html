@@ -2,14 +2,16 @@
 <div class="form-group">
   <label for="UserId" class="col-lg-4 control-label">UserId</label>
   <div class="col-lg-8">
-    <input class="form-control" id="UserId" placeholder="UserId" type="text" name="UserId" [(ngModel)]="editUser.UserId">
+    <input class="form-control" id="UserId" placeholder="UserId" type="text" name="UserId" [(ngModel)]="editUser.UserId" readonly="true">
   </div>
 </div>
 
 <div class="form-group">
-  <label for="RoleId" class="col-lg-4 control-label">RoleId</label>
+  <label for="RoleId" class="col-lg-4 control-label">Role</label>
   <div class="col-lg-8">
-    <input class="form-control" id="RoleId" placeholder="RoleId" type="text" name="RoleId" [(ngModel)]="editUser.RoleId">
+    <select class="form-control" [(ngModel)]="editUser.RoleId" id="RoleId" name="RoleId">
+      <option *ngFor="let obj of roleList | async" [value]="obj.RoleId">{{obj.Name}}</option>
+    </select>
   </div>
 </div>
 
