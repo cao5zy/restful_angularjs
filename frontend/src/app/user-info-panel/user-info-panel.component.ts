@@ -1,5 +1,9 @@
 import { TemplateRef, EventEmitter, ViewChild, Output, Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import * as _ from 'lodash';
+import useService from './../services/useService';
+import { Service } from './../services';
+import { MemberDescriptor } from './../models';
+
 
 @Component({
   selector: 'app-user-info-panel',
@@ -8,8 +12,12 @@ import * as _ from 'lodash';
 })
 export class UserInfoPanelComponent implements OnInit {
 
-  constructor() { }
   editUser:any = null;
+  memberService: any = null;
+
+  constructor(private _service: Service) { 
+      this.memberService = useService(new MemberDescriptor(), this._service);
+  }
 
   @Input() set user(user:any){
   	this.editUser = _.extend({
@@ -32,8 +40,10 @@ export class UserInfoPanelComponent implements OnInit {
 
 
   saveUser(){
+
+    this.memberService({method:'post', param:this.editUser})
+      .subscribe(res=>{console.log(res);});
     this.onSave.next("");
-    //this.memberService({method:'post', param:this.editUser});
   }
 
   hide(){

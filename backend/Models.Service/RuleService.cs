@@ -52,6 +52,7 @@ namespace Models.Service
         public static bool CheckWithRule(string val, string category, out string reason)
         {
             reason = "";
+            val = val == null ? "" : val;
             if (GetRules(category).Find(n =>
             {
                 return (n.BlackList.Contains(val.ToLower())

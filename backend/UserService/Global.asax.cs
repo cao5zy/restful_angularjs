@@ -15,7 +15,7 @@ namespace UserService
     {
         public void Application_Error(object sender, EventArgs e)
         {
-            AutofacServiceHostFactory.Container.Resolve<log4net.ILog>().Error(new { sender = sender, arg = e});
+            AutofacServiceHostFactory.Container.Resolve<log4net.ILog>().Error(new { sender = sender, arg = e });
         }
 
         protected void Application_Start(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace UserService
                 return new Func<string, List<string>>((setting) =>
                 {
                     return (setting != null ? setting.Split(',').ToList() : new List<string>())
-                    .ConvertAll(n=>n.ToLower());
+                    .ConvertAll(n => n.ToLower());
                 })
                 (ConfigurationManager.AppSettings["allowedDomains"]);
 
@@ -66,14 +66,25 @@ namespace UserService
                 getConfigedDomains().Contains(getDomainName());
             });
 
-            var handleResponse = new Action<string, string>((allowedmethods, domain) => {
-                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", domain);
-                HttpContext.Current.Response.AddHeader("Access-Control-Allow-Methods", allowedmethods);
+            var handleResponse = new Action<string, string, string, string, HttpRequest, HttpResponse>((allowedmethods, domain, maxAge, contentType, request, response) =>
+            {
+                response.AddHeader("Access-Control-Allow-Origin", domain);
+
+                if (request.HttpMethod == "OPTIONS")
+                {
+                    //These headers are handling the "pre-flight" OPTIONS call sent by the browser
+                    response.AddHeader("Access-Control-Allow-Methods", allowedmethods);
+                    response.AddHeader("Access-Control-Allow-Headers", request.Headers["Access-Control-Request-Headers"].ToString());
+                    response.AddHeader("Access-Control-Max-Age", maxAge);
+                    response.AddHeader("ContentType", contentType);
+                    response.End();
+                }
+
             });
 
             if (isDomainAllowed())
-                handleResponse("POST, PUT, DELETE, GET", getDomainName());
+                handleResponse("POST, PUT, DELETE, GET", getDomainName(), "1728000", "application/json", HttpContext.Current.Request, HttpContext.Current.Response);
         }
-      
+
     }
 }

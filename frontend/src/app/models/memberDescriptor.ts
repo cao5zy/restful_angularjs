@@ -18,7 +18,7 @@ export class MemberDescriptor extends Descriptor {
   }
 
   postPreConvert(obj: any):any{
-    return {param:obj};
+    return obj;
   }
 
   deletePreConvert(obj: any):any{
