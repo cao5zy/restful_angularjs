@@ -79,7 +79,16 @@ namespace Models.Service
         {
             var update = new Func<User, User>((oldUser) => {
                 db.DeleteUser(oldUser);
-                db.CreateUser(user);
+                db.CreateUser(new User {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    UserId = user.UserId,
+                    RoleId = user.RoleId,
+                    Email = user.Email,
+                    Mobile = user.Mobile,
+                    DateOfBirth = user.DateOfBirth,
+                    Username = user.Username
+                });
                 return user;
             });
 

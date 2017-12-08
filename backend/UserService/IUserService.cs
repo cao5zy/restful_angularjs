@@ -27,7 +27,7 @@ namespace UserService
         void CreateUser(User user);
 
         [OperationContract]
-        [WebInvoke(Method = "PUT", UriTemplate = "User")]
+        [WebInvoke(Method = "PUT", UriTemplate = "User", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         User UpdateUser(User user);
 
         [OperationContract]
