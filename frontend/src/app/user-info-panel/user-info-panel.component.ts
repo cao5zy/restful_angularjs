@@ -2,7 +2,7 @@ import { TemplateRef, EventEmitter, ViewChild, Output, Component, OnInit, Input,
 import * as _ from 'lodash';
 import useService from './../services/useService';
 import { Service } from './../services';
-import { MemberDescriptor } from './../models';
+import { CommonDescriptor } from './../models';
 
 
 @Component({
@@ -16,7 +16,7 @@ export class UserInfoPanelComponent implements OnInit {
   memberService: any = null;
 
   constructor(private _service: Service) { 
-      this.memberService = useService(new MemberDescriptor(), this._service);
+      this.memberService = useService(new CommonDescriptor(), this._service);
   }
 
   @Input() set user(user:any){

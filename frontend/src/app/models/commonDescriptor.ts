@@ -1,7 +1,7 @@
 import { Descriptor } from './descriptor';
 import * as _ from 'lodash';
 
-export class MemberDescriptor extends Descriptor {
+export class CommonDescriptor extends Descriptor {
   constructor(){
     super();
     this.urn = "User";

@@ -1,4 +1,4 @@
 export * from './descriptor';
 export * from './serviceParam';
-export * from './memberDescriptor';
+export * from './commonDescriptor';
 export * from './roleDescriptor';
