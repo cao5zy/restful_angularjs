@@ -18,7 +18,7 @@
 <div class="form-group">
   <label for="Username" class="col-lg-4 control-label">Username</label>
   <div class="col-lg-8">
-    <input class="form-control" id="Username" placeholder="Username" type="text" name="Username" [(ngModel)]="editUser.Username" required minlength="5" maxlength="20" #Username="ngModel">
+    <input class="form-control" id="Username" placeholder="Username" type="text" name="Username" [(ngModel)]="editUser.Username" required minlength="5" maxlength="20" #Username="ngModel" appUserNameRule>
         <div *ngIf="Username.invalid && (Username.dirty || Username.touched)"
              class="alert alert-danger">
 
