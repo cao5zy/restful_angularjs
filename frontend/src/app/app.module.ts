@@ -10,6 +10,7 @@ import { MembersComponent } from './members/members.component';
 import { RolesComponent } from './roles/roles.component';
 import { AppConfig } from './appConfig';
 import { UserInfoPanelComponent } from './user-info-panel/user-info-panel.component';
+import { UserNameRuleDirective } from './user-name-rule.directive';
 
 const appRoutes: Routes = [
   { path: 'members', component: MembersComponent },
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
     AppComponent,
     MembersComponent,
     RolesComponent,
-    UserInfoPanelComponent
+    UserInfoPanelComponent,
+    UserNameRuleDirective
   ],
   imports: [
     HttpModule,
