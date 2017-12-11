@@ -35,7 +35,7 @@ namespace UserService
         int DeleteUser(string userId);
 
         [OperationContract]
-        [WebGet(UriTemplate = "Rule/{category}")]
+        [WebGet(UriTemplate = "Rule/{category}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         List<Rule> GetRules(string category);
         // TODO: Add your service operations here
     }
