@@ -12,11 +12,11 @@ export class UserNameRuleDirective implements Validator {
   validate(control: AbstractControl):{[key: string]: any}{
   	if (!control.dirty && control.value == null)
   		return null;
-  	
+
   	let result = this._ruleService.checkRule("username", control.value);
   	if (result.result)
   		return null;
   	else
-  		return {"username": result.reason};
+  		return {"appUserNameRule": {value: result.reason}};
   }
 }

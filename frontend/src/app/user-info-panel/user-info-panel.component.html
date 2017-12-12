@@ -31,6 +31,9 @@
           <div *ngIf="Username.errors.maxlength">
             Name must be less than characters long.
           </div>
+          <div *ngIf="Username.errors.appUserNameRule">
+            {{Username.errors.appUserNameRule.value}}
+          </div>
         </div>
   </div>
 </div>
