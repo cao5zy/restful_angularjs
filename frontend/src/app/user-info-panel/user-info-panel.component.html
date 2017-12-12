@@ -55,14 +55,26 @@
 <div class="form-group">
   <label for="Mobile" class="col-lg-4 control-label">Mobile</label>
   <div class="col-lg-8">
-    <input class="form-control" id="Mobile" placeholder="Mobile" type="text" name="Mobile" [(ngModel)]="editUser.Mobile">
+    <input class="form-control" id="Mobile" placeholder="Mobile" type="text" name="Mobile" [(ngModel)]="editUser.Mobile" #Mobile="ngModel" appRule="mobile">
+        <div *ngIf="Mobile.invalid && (Mobile.dirty || Mobile.touched)"
+             class="alert alert-danger">
+          <div *ngIf="Mobile.errors.appRule">
+            {{Mobile.errors.appRule.value}}
+          </div>
+        </div>
   </div>
 </div>
 
 <div class="form-group">
   <label for="Email" class="col-lg-4 control-label">Email</label>
   <div class="col-lg-8">
-    <input class="form-control" id="Email" placeholder="Email" type="text" name="Email" [(ngModel)]="editUser.Email">
+    <input class="form-control" id="Email" placeholder="Email" type="text" name="Email" [(ngModel)]="editUser.Email" #Email="ngModel" appRule="email">
+        <div *ngIf="Email.invalid && (Email.dirty || Email.touched)"
+             class="alert alert-danger">
+          <div *ngIf="Email.errors.appRule">
+            {{Email.errors.appRule.value}}
+          </div>
+        </div>
   </div>
 </div>
 

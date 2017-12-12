@@ -15,7 +15,7 @@ export class RuleService {
 	    	(value != null && rule[ruleName].blacklist && _.find(rule[ruleName].blacklist, n=>n.toLowerCase() == value.toLowerCase())) ?
 	    	{result: false, reason:`'${value}'' is not allowed.`} :
 	    	(value != null && rule[ruleName].validexpression && !new RegExp(rule[ruleName].validexpression).test(value)) ?
-	    	{result: false, reason: "contains invalid charactor"} :
+	    	{result: false, reason: rule[ruleName].message || "contains invalid charactor"} :
         value == null ?
         {result: false, reason: `${ruleName} should not be empty`} :
 	    	{result: true, reason: ""};
