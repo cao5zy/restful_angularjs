@@ -9,9 +9,16 @@
 <div class="form-group">
   <label for="RoleId" class="col-lg-4 control-label">Role</label>
   <div class="col-lg-8">
-    <select class="form-control" [(ngModel)]="editUser.RoleId" id="RoleId" name="RoleId">
-      <option *ngFor="let obj of roleList | async" [value]="obj.RoleId">{{obj.Name}}</option>
+    <select class="form-control" [(ngModel)]="editUser.RoleId" id="RoleId" name="RoleId" required #RoleId="ngModel">
+      <option *ngFor="let obj of roleList | async" [value]="obj.RoleId" >{{obj.Name}}</option>
     </select>
+        <div *ngIf="RoleId.invalid && (RoleId.dirty || RoleId.touched)"
+             class="alert alert-danger">
+
+          <div *ngIf="RoleId.errors.required">
+            Role is required.
+          </div>
+        </div>
   </div>
 </div>
 
@@ -24,12 +31,6 @@
 
           <div *ngIf="Username.errors.required">
             Name is required.
-          </div>
-          <div *ngIf="Username.errors.minlength">
-            Name must be at least 4 characters long.
-          </div>
-          <div *ngIf="Username.errors.maxlength">
-            Name must be less than characters long.
           </div>
           <div *ngIf="Username.errors.appRule">
             {{Username.errors.appRule.value}}
