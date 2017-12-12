@@ -18,7 +18,7 @@
 <div class="form-group">
   <label for="Username" class="col-lg-4 control-label">Username</label>
   <div class="col-lg-8">
-    <input class="form-control" id="Username" placeholder="Username" type="text" name="Username" [(ngModel)]="editUser.Username" required minlength="5" maxlength="20" #Username="ngModel" appUserNameRule="username">
+    <input class="form-control" id="Username" placeholder="Username" type="text" name="Username" [(ngModel)]="editUser.Username" required minlength="5" maxlength="20" #Username="ngModel" appRule="username">
         <div *ngIf="Username.invalid && (Username.dirty || Username.touched)"
              class="alert alert-danger">
 
@@ -31,8 +31,8 @@
           <div *ngIf="Username.errors.maxlength">
             Name must be less than characters long.
           </div>
-          <div *ngIf="Username.errors.appUserNameRule">
-            {{Username.errors.appUserNameRule.value}}
+          <div *ngIf="Username.errors.appRule">
+            {{Username.errors.appRule.value}}
           </div>
         </div>
   </div>
