@@ -44,7 +44,6 @@
   <div class="modal-body">
     <form class="form-horizontal">
       <fieldset>
-		<legend>UserInfo</legend>
 		<app-user-info-panel #userPanel [user]="selectedUser" (onHide)='modal.hide()' (onSave)='modal.hide();loadMembers()'></app-user-info-panel>
       </fieldset>
       </form>
