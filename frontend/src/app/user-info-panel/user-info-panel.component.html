@@ -99,6 +99,6 @@
 <div class="form-group">
   <div class="col-lg-10 col-lg-offset-2">
     <button type="reset" class="btn btn-default" (click)="hide()">Cancel</button>
-    <button type="submit" class="btn btn-primary" (click)="saveUser()" >Submit</button>
+    <button type="submit" class="btn btn-primary" [disabled]="Username.invalid || Email.invalid || Mobile.invalid || DateOfBirth.invalid" (click)="saveUser()" >Submit</button>
   </div>
 </div>
