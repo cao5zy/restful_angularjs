@@ -67,7 +67,8 @@ namespace Models.Service
 
         public static User CheckUniqueUser(User user, IDb db)
         {
-            if (IsUniqueUser(user.Username, db))
+            if (IsUniqueUser(user.Username, db)
+                || (user.UserId != 0 && GetUserById(user.UserId, db).Username == user.Username))
                 return user;
             else
                 throw new Exceptions.UserUniqueException(user.Username);
