@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'micro-service designer';
-  show = '';
+  selectedTitle:string = "Members";
 }
