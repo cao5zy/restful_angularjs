@@ -22,6 +22,10 @@ namespace UserService
         List<User> GetUsers(string id, string role);
 
         [OperationContract]
+        [WebGet(UriTemplate = "UniqueUser/{userName}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json)]
+        bool CheckUniqueUser(string userName);
+
+        [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "User", RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         void CreateUser(User user);
@@ -37,6 +41,7 @@ namespace UserService
         [OperationContract]
         [WebGet(UriTemplate = "Rule/{category}", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
         List<Rule> GetRules(string category);
+
         // TODO: Add your service operations here
     }
 }

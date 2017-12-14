@@ -65,6 +65,13 @@ namespace Models.Service
                 });
         }
 
+        public static bool CheckUniqueUser(string userName, IDb db)
+        {
+            var users = GetUsers(0, userName, null, db);
+            return string.IsNullOrEmpty(userName) ? false:
+                !(users.Count == 1 && users[0].Username.ToLower() == userName.ToLower());
+        }
+
         public static User GetUserById(int userId, IDb db)
         {
             return GetUsers(userId, null, null, db).FirstOrDefault();

@@ -20,6 +20,12 @@ namespace UserService
         {
             this._db = db;
         }
+
+        public bool CheckUniqueUser(string userName)
+        {
+            return Models.Service.UserService.CheckUniqueUser(userName, this._db);
+        }
+
         public void CreateUser(User user)
         {
             Models.Service.UserService.CreateUser(

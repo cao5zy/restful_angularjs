@@ -17,6 +17,22 @@ namespace UserService
 			this._log = logger;
         }
 
+		public System.Boolean CheckUniqueUser(System.String userName){
+			var ctx = WebOperationContext.Current;
+			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
+			try{
+				this._log.Debug(new {userName=userName, _name="CheckUniqueUser"});
+				return this._service.CheckUniqueUser(userName);
+			}
+			catch(Exception ex)
+			{
+				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
+				ctx.OutgoingResponse.StatusDescription = ex.Message;  
+				this._log.Error(new { name = "CheckUniqueUser", ex = ex});
+				return false;
+			}
+		}
+
 		public void CreateUser(Models.User user){
 			var ctx = WebOperationContext.Current;
 			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
@@ -86,8 +102,7 @@ namespace UserService
 			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
 				this._log.Debug(new {name=name, role=role, _name="GetUsers"});
-				var rs = this._service.GetUsers(name,role);
-                return rs;
+				return this._service.GetUsers(name,role);
 			}
 			catch(Exception ex)
 			{
