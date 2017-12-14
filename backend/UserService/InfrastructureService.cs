@@ -113,7 +113,7 @@ namespace UserService
 			}
 		}
 
-		public Models.User UpdateUser(Models.User user){
+		public System.String UpdateUser(Models.User user){
 			var ctx = WebOperationContext.Current;
 			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
@@ -125,7 +125,7 @@ namespace UserService
 				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
 				ctx.OutgoingResponse.StatusDescription = ex.Message;  
 				this._log.Error(new { name = "UpdateUser", ex = ex});
-				return null;
+				return "";
 			}
 		}
 	}

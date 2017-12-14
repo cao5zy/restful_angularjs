@@ -65,9 +65,17 @@ namespace UserService
             return Models.Service.UserService.GetUsers(0, name == "_default" ? "" : name, role == "_default" ? "" : role, this._db);
         }
 
-        public User UpdateUser(User user)
+        public string UpdateUser(User user)
         {
-            return Models.Service.UserService.UpdateUser(RuleService.ValidateUser(user), this._db);
+            try
+            {
+                Models.Service.UserService.UpdateUser(Models.Service.UserService.CheckUniqueUser(RuleService.ValidateUser(user), this._db), this._db);
+                return "";
+            }
+            catch (Models.Service.Exceptions.UserUniqueException ex)
+            {
+                return ex.Message;
+            }
         }
 
     }

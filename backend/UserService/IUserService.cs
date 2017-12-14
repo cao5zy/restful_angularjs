@@ -32,7 +32,7 @@ namespace UserService
 
         [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "User", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        User UpdateUser(User user);
+        string UpdateUser(User user);
 
         [OperationContract]
         [WebInvoke(Method = "DELETE", UriTemplate = "User?userId={userId}")]
