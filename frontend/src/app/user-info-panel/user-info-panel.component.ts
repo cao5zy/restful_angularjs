@@ -49,12 +49,10 @@ export class UserInfoPanelComponent implements OnInit {
   saveUser(){
     if (this.originalUser == null)
       this.callUserService({method:'post', param:_.extend(this.editUser, {UserId:0})})
-      .subscribe(res=>console.log(res));
+      .subscribe(res=>this.onSave.next(""));
     else
       this.callUserService({method:'put', param:this.editUser})
-      .subscribe(res=>{console.log(res);});
-    
-    this.onSave.next("");
+      .subscribe(res=>this.onSave.next(""));
   }
 
   hide(){

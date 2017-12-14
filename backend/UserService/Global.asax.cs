@@ -74,7 +74,7 @@ namespace UserService
                 {
                     //These headers are handling the "pre-flight" OPTIONS call sent by the browser
                     response.AddHeader("Access-Control-Allow-Methods", allowedmethods);
-                    response.AddHeader("Access-Control-Allow-Headers", request.Headers["Access-Control-Request-Headers"].ToString());
+                    response.AddHeader("Access-Control-Allow-Headers", request.Headers["Access-Control-Request-Headers"] == null? "": request.Headers["Access-Control-Request-Headers"].ToString());
                     response.AddHeader("Access-Control-Max-Age", maxAge);
                     response.AddHeader("ContentType", contentType);
                     response.End();

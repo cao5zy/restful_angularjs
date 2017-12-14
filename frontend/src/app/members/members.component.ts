@@ -35,4 +35,12 @@ export class MembersComponent implements OnInit {
     this.selectedUser = user;
     this.modal = this.modalService.show(template);
   }
+
+  deleteUser(userId:number, event){
+    event.stopPropagation();
+    this.memberService({method:"delete", param:{userId}})
+    .subscribe(res=>{
+      this.loadMembers();
+    });
+  }
 }

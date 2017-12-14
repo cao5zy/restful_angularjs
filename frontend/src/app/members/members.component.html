@@ -13,6 +13,7 @@
 						<th>Mobile</th>
 						<th>Email</th>
 						<th>DateOfBirth</th>
+						<th>&nbsp;</th>
 					</tr>
 				  </thead>
 				  <tbody>
@@ -25,6 +26,7 @@
 						<td>{{obj.Mobile}}</td>
 						<td>{{obj.Email}}</td>
 						<td>{{obj.DateOfBirthStr}}</td>
+						<td><button type="button" class="btn btn-danger" (click)="deleteUser(obj.UserId, $event)"><span class="glyphicon glyphicon-search"></span></button></td>
 				  	</tr>
 				  </tbody>
 				</table> 

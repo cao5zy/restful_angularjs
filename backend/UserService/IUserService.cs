@@ -31,7 +31,7 @@ namespace UserService
         User UpdateUser(User user);
 
         [OperationContract]
-        [WebInvoke(Method = "DELETE", UriTemplate = "User/{userId}")]
+        [WebInvoke(Method = "DELETE", UriTemplate = "User?userId={userId}")]
         int DeleteUser(string userId);
 
         [OperationContract]

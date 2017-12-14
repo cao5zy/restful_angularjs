@@ -23,7 +23,7 @@ export class CommonDescriptor extends Descriptor {
 
   deletePreConvert(obj: any):any{
     console.log('deletePreConvert', obj);
-    return {instanceName:obj}
+    return obj
   }
 
   putPreConvert(obj: any):any{
