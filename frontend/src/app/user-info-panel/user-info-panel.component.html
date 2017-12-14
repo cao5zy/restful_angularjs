@@ -35,6 +35,10 @@
           <div *ngIf="Username.errors.appRule">
             {{Username.errors.appRule.value}}
           </div>
+          
+        </div>
+        <div id="userNameUnique_error" style="display: none" class="alert alert-danger">
+            Username has been existed
         </div>
   </div>
 </div>

@@ -1,9 +1,9 @@
-import { TemplateRef, EventEmitter, ViewChild, Output, Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { ElementRef, TemplateRef, EventEmitter, ViewChild, Output, Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import * as _ from 'lodash';
 import useService from './../services/useService';
 import { Service } from './../services';
 import { CommonDescriptor } from './../models';
-
+import * as jquery from 'jquery';
 
 @Component({
   selector: 'app-user-info-panel',
@@ -17,8 +17,9 @@ export class UserInfoPanelComponent implements OnInit {
   callRoleService: any = null;
   roleList:Array<any> = null;
   private originalUser: any = null;
-
-  constructor(private _service: Service) { 
+  isNotUniqueUser: boolean = null;
+  constructor(private _service: Service, private elementRef: ElementRef
+) { 
       this.callUserService = useService(new CommonDescriptor("User"), this._service);
       this.callRoleService = useService(new CommonDescriptor("Role"), this._service);
   }
@@ -49,10 +50,38 @@ export class UserInfoPanelComponent implements OnInit {
   saveUser(){
     if (this.originalUser == null)
       this.callUserService({method:'post', param:_.extend(this.editUser, {UserId:0})})
-      .subscribe(res=>this.onSave.next(""));
+      .subscribe(res=>{
+        if (res._body != "")
+        {
+          this.isNotUniqueUser = true;
+          jquery(this.elementRef.nativeElement).find("#userNameUnique_error").show();
+
+        }
+        else
+        {
+          this.isNotUniqueUser = false;
+          jquery(this.elementRef.nativeElement).find("#userNameUnique_error").hide();
+          
+          this.onSave.next("");
+        }
+        });
     else
       this.callUserService({method:'put', param:this.editUser})
-      .subscribe(res=>this.onSave.next(""));
+      .subscribe(res=>{
+        if(res._body != "")
+        {
+          this.isNotUniqueUser = true;
+          jquery(this.elementRef.nativeElement).find("#userNameUnique_error").show();
+        }
+        else
+        {
+          jquery(this.elementRef.nativeElement).find("#userNameUnique_error").hide();
+
+          this.isNotUniqueUser = false;
+          this.onSave.next("");
+        }
+        
+      });
   }
 
   hide(){

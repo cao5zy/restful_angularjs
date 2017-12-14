@@ -20,6 +20,9 @@ export class CommonDescriptor extends Descriptor {
   postPreConvert(obj: any):any{
     return obj;
   }
+  postConvert(obj: any):any{
+      return obj._body == "\"\"" ? _.extend(obj, {_body:""}):obj;
+    }
 
   deletePreConvert(obj: any):any{
     console.log('deletePreConvert', obj);
