@@ -82,7 +82,13 @@
 <div class="form-group">
   <label for="DateOfBirth" class="col-lg-4 control-label">DateOfBirth</label>
   <div class="col-lg-8">
-    <input class="form-control" id="DateOfBirth" placeholder="DateOfBirth" type="text" name="DateOfBirth" [(ngModel)]="editUser.DateOfBirthStr">
+    <input class="form-control" id="DateOfBirth" placeholder="DateOfBirth" type="text" name="DateOfBirth" [(ngModel)]="editUser.DateOfBirthStr" appDateFormatValidation #DateOfBirth="ngModel">
+        <div *ngIf="DateOfBirth.invalid && (DateOfBirth.dirty || DateOfBirth.touched)"
+             class="alert alert-danger">
+          <div *ngIf="DateOfBirth.errors.appDateFormatValidation">
+            {{DateOfBirth.errors.appDateFormatValidation.value}}
+          </div>
+        </div>
   </div>
 </div>
 

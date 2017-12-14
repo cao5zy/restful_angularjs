@@ -12,6 +12,7 @@ import { AppConfig } from './appConfig';
 import { UserInfoPanelComponent } from './user-info-panel/user-info-panel.component';
 import { RuleDirective } from './rule.directive';
 import { RuleService } from './services';
+import { DateFormatValidationDirective } from './directives/date-format-validation.directive';
 
 const appRoutes: Routes = [
   { path: 'members', component: MembersComponent },
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     MembersComponent,
     RolesComponent,
     UserInfoPanelComponent,
-    RuleDirective
+    RuleDirective,
+    DateFormatValidationDirective
   ],
   imports: [
     HttpModule,
