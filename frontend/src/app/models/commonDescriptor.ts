@@ -30,8 +30,10 @@ export class CommonDescriptor extends Descriptor {
   }
 
   putPreConvert(obj: any):any{
-    //{originalInstanceName: orginalInstanceName,
-    //        	  model: this.appViewModel}
     return obj;
   }
+  putConvert(obj: any):any {
+    return obj._body == "\"\"" ? _.extend(obj, {_body:""}):obj;
+  }
+
 }

@@ -3,7 +3,6 @@ import * as _ from 'lodash';
 import useService from './../services/useService';
 import { Service } from './../services';
 import { CommonDescriptor } from './../models';
-import * as jquery from 'jquery';
 
 @Component({
   selector: 'app-user-info-panel',
@@ -18,8 +17,7 @@ export class UserInfoPanelComponent implements OnInit {
   roleList:Array<any> = null;
   private originalUser: any = null;
   isNotUniqueUser: boolean = null;
-  constructor(private _service: Service, private elementRef: ElementRef
-) { 
+  constructor(private _service: Service) { 
       this.callUserService = useService(new CommonDescriptor("User"), this._service);
       this.callRoleService = useService(new CommonDescriptor("Role"), this._service);
   }
@@ -51,36 +49,14 @@ export class UserInfoPanelComponent implements OnInit {
     if (this.originalUser == null)
       this.callUserService({method:'post', param:_.extend(this.editUser, {UserId:0})})
       .subscribe(res=>{
-        if (res._body != "")
-        {
-          this.isNotUniqueUser = true;
-          jquery(this.elementRef.nativeElement).find("#userNameUnique_error").show();
-
-        }
-        else
-        {
-          this.isNotUniqueUser = false;
-          jquery(this.elementRef.nativeElement).find("#userNameUnique_error").hide();
-          
-          this.onSave.next("");
-        }
-        });
+        this.isNotUniqueUser = !_.isEmpty(res._body);
+        if(_.isEmpty(res._body)) this.onSave.next("");
+      });
     else
       this.callUserService({method:'put', param:this.editUser})
       .subscribe(res=>{
-        if(res._body != "")
-        {
-          this.isNotUniqueUser = true;
-          jquery(this.elementRef.nativeElement).find("#userNameUnique_error").show();
-        }
-        else
-        {
-          jquery(this.elementRef.nativeElement).find("#userNameUnique_error").hide();
-
-          this.isNotUniqueUser = false;
-          this.onSave.next("");
-        }
-        
+        this.isNotUniqueUser = !_.isEmpty(res._body);
+        if(_.isEmpty(res._body)) this.onHide.next("");
       });
   }
 
