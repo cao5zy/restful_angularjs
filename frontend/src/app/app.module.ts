@@ -13,6 +13,7 @@ import { UserInfoPanelComponent } from './user-info-panel/user-info-panel.compon
 import { RuleDirective } from './rule.directive';
 import { RuleService } from './services';
 import { DateFormatValidationDirective } from './directives/date-format-validation.directive';
+import { UniqueUserNameDirective } from './directives/unique-user-name.directive';
 
 const appRoutes: Routes = [
   { path: 'members', component: MembersComponent },
@@ -27,7 +28,8 @@ const appRoutes: Routes = [
     RolesComponent,
     UserInfoPanelComponent,
     RuleDirective,
-    DateFormatValidationDirective
+    DateFormatValidationDirective,
+    UniqueUserNameDirective
   ],
   imports: [
     HttpModule,
