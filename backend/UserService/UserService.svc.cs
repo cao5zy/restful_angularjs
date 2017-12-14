@@ -21,15 +21,25 @@ namespace UserService
             this._db = db;
         }
 
-        public bool CheckUniqueUser(string userName)
+        public bool IsUniqueUser(string userName)
         {
-            return Models.Service.UserService.CheckUniqueUser(userName, this._db);
+            return Models.Service.UserService.IsUniqueUser(userName, this._db);
         }
 
-        public void CreateUser(User user)
+        public string CreateUser(User user)
         {
-            Models.Service.UserService.CreateUser(
-                RuleService.ValidateUser(user), this._db);
+            try
+            {
+                Models.Service.UserService.CreateUser(
+                    Models.Service.UserService.CheckUniqueUser(
+                        RuleService.ValidateUser(user), this._db), this._db);
+                return "";
+            }
+            catch (Models.Service.Exceptions.UserUniqueException ex)
+            {
+                return ex.Message;
+            }
+
         }
 
         public int DeleteUser(string userId)
@@ -52,12 +62,13 @@ namespace UserService
 
         public List<User> GetUsers(string name, string role)
         {
-            return Models.Service.UserService.GetUsers(0, name == "_default" ? "" : name, role == "_default" ? "": role, this._db);
+            return Models.Service.UserService.GetUsers(0, name == "_default" ? "" : name, role == "_default" ? "" : role, this._db);
         }
 
         public User UpdateUser(User user)
         {
             return Models.Service.UserService.UpdateUser(RuleService.ValidateUser(user), this._db);
         }
+
     }
 }

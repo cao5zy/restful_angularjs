@@ -19,7 +19,8 @@ namespace Models
         [OnDeserialized]
         void OnDeserializing(StreamingContext ctx)
         {
-            this.DateOfBirth = DateTime.ParseExact(this.DateOfBirthStr, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            if(!string.IsNullOrEmpty(this.DateOfBirthStr))
+                this.DateOfBirth = DateTime.ParseExact(this.DateOfBirthStr, "yyyy-MM-dd", CultureInfo.InvariantCulture);
         }
         public string DateOfBirthStr { get; set; }
     }

@@ -17,35 +17,35 @@ namespace UserService
 			this._log = logger;
         }
 
-		public System.Boolean CheckUniqueUser(System.String userName){
+		public System.Boolean IsUniqueUser(System.String userName){
 			var ctx = WebOperationContext.Current;
 			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
-				this._log.Debug(new {userName=userName, _name="CheckUniqueUser"});
-				return this._service.CheckUniqueUser(userName);
+				this._log.Debug(new {userName=userName, _name="IsUniqueUser"});
+				return this._service.IsUniqueUser(userName);
 			}
 			catch(Exception ex)
 			{
 				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
 				ctx.OutgoingResponse.StatusDescription = ex.Message;  
-				this._log.Error(new { name = "CheckUniqueUser", ex = ex});
+				this._log.Error(new { name = "IsUniqueUser", ex = ex});
 				return false;
 			}
 		}
 
-		public void CreateUser(Models.User user){
+		public System.String CreateUser(Models.User user){
 			var ctx = WebOperationContext.Current;
 			ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.OK;
 			try{
 				this._log.Debug(new {user=user, _name="CreateUser"});
-				 this._service.CreateUser(user);
+				return this._service.CreateUser(user);
 			}
 			catch(Exception ex)
 			{
 				ctx.OutgoingResponse.StatusCode = System.Net.HttpStatusCode.ExpectationFailed;  
 				ctx.OutgoingResponse.StatusDescription = ex.Message;  
 				this._log.Error(new { name = "CreateUser", ex = ex});
-				
+				return "";
 			}
 		}
 

@@ -23,12 +23,12 @@ namespace UserService
 
         [OperationContract]
         [WebGet(UriTemplate = "UniqueUser/{userName}", ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare, RequestFormat = WebMessageFormat.Json)]
-        bool CheckUniqueUser(string userName);
+        bool IsUniqueUser(string userName);
 
         [OperationContract]
         [WebInvoke(Method = "POST", UriTemplate = "User", RequestFormat = WebMessageFormat.Json,
             ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]
-        void CreateUser(User user);
+        string CreateUser(User user);
 
         [OperationContract]
         [WebInvoke(Method = "PUT", UriTemplate = "User", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Bare)]

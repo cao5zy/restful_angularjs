@@ -65,11 +65,19 @@ namespace Models.Service
                 });
         }
 
-        public static bool CheckUniqueUser(string userName, IDb db)
+        public static User CheckUniqueUser(User user, IDb db)
+        {
+            if (IsUniqueUser(user.Username, db))
+                return user;
+            else
+                throw new Exceptions.UserUniqueException(user.Username);
+        }
+
+        public static bool IsUniqueUser(string userName, IDb db)
         {
             var users = GetUsers(0, userName, null, db);
             return string.IsNullOrEmpty(userName) ? false:
-                !(users.Count == 1 && users[0].Username.ToLower() == userName.ToLower());
+                users.Count == 0 || !users.Exists(n=>n.Username.ToLower() == userName.ToLower());
         }
 
         public static User GetUserById(int userId, IDb db)
