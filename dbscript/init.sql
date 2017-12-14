@@ -46,6 +46,12 @@ CREATE TABLE [dbo].[User](
 ) ON [PRIMARY]
 
 GO
+/*****************Add unique constraint to username*********************/
+ALTER TABLE [dbo].[User]
+ADD CONSTRAINT [UNIQUE_Username] UNIQUE ([Username] ASC)
+
+GO
+
 INSERT [dbo].[Role] ([RoleId], [Name]) VALUES (1, N'Admin')
 INSERT [dbo].[Role] ([RoleId], [Name]) VALUES (2, N'SuperUser')
 INSERT [dbo].[Role] ([RoleId], [Name]) VALUES (3, N'NormalUser')
