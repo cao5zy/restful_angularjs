@@ -7,7 +7,7 @@
 
 ## 技术要点
 
-1. AngularJs 2
+1. [AngularJs 2](#angularjs-2)
 2. WCF Restful Service
 3. 跨域问题
 4. 依赖注入应用(Autofac)
@@ -127,7 +127,9 @@
 1. base设置  
 route要正常工作，依赖于index.html的base设置
 
+
 	<base href="/"/>
+
 
 特别是将AngularJs2的站点放在网站的文件夹而不是根目录时，这个地址必须设置正确，否则route不能正常工作  
 
