@@ -96,6 +96,7 @@
 	</tr>
 
 #### Route
+[参考AngularJs2 官方router页面](https://angular.io/guide/router)  
 通过使用Route，能够通过Url来加载对应的component  
 添加引用  
 
@@ -131,7 +132,7 @@ route要正常工作，依赖于index.html的base设置
 	<base href="/"/>
 
 
-特别是将AngularJs2的站点放在网站的文件夹而不是根目录时，这个地址必须设置正确，否则route不能正常工作  
+如果将AngularJs2的站点放在网站的文件夹而不是根目录时，这个地址就应该是哪个文件夹对应的url，否则route不能正常工作  
 
 2. router-outlet  
 router-outlet是AngularJs2用来显示route内容的占位符，通过放在app.component.html中（根component中）。  
