@@ -47,8 +47,8 @@
 #### IE兼容
 
 [参考Stackoverflow](https://stackoverflow.com/questions/35140718/angular-2-4-not-working-in-ie11)  
-[参考AngularJs 的Brower support](https://angular.io/guide/browser-support)
-注释掉src/polyfills.ts中的如下代码
+[参考AngularJs 的Brower support](https://angular.io/guide/browser-support)  
+注释掉src/polyfills.ts中的如下代码  
 	import 'core-js/es6/symbol';
 	import 'core-js/es6/object';
 	import 'core-js/es6/function';
