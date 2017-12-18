@@ -67,10 +67,12 @@
 
 
 #### Observable
-[参考AngularJs2Rxjs](http://www.angulartypescript.com/angular-2-rxjs-observable/)
+[参考AngularJs2Rxjs](http://www.angulartypescript.com/angular-2-rxjs-observable/)  
 添加引用  
+
 	import { Observable } from 'rxjs/Observable';
 	import { Observer } from 'rxjs/Observer';
+
 在http通信中使用  
 
 	post(urn: string, param: any): Observable<any>{
