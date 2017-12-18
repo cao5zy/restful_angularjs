@@ -83,7 +83,7 @@
 
 在template中使用  
 
-	<tr *ngFor="let obj of this.memberList | **async**; let i = index;" (click)="selectUser(obj, template)">
+	<tr *ngFor="let obj of this.memberList | async; let i = index;" (click)="selectUser(obj, template)">
 		<td>{{obj.UserId}}</td>
 		<td>{{obj.Role.Name}}</td>
 		<td>{{obj.Username}}</td>
@@ -117,7 +117,7 @@
 	  ],
 	  imports: [
 	  	...
-	    **RouterModule.forRoot(appRoutes)**
+	    RouterModule.forRoot(appRoutes)
 	  ],
 	  bootstrap: [AppComponent],
 	  providers: [...]
@@ -125,11 +125,12 @@
 
 其它注意事项  
 1. base设置  
-route要正常工作，必须依赖于index.html的base设置
+route要正常工作，依赖于index.html的base设置
 
 	<base href="/"/>
 
 特别是将AngularJs2的站点放在网站的文件夹而不是根目录时，这个地址必须设置正确，否则route不能正常工作  
+
 2. router-outlet  
 router-outlet是AngularJs2用来显示route内容的占位符，通过放在app.component.html中（根component中）。  
 #### ServiceProvider
