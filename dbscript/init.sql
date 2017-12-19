@@ -1,4 +1,10 @@
 
+CREATE DATABASE [User]
+GO
+
+USE [User]
+GO
+
 /****** Object:  Table [dbo].[Role]    Script Date: 13/11/2017 5:16:20 PM ******/
 SET ANSI_NULLS ON
 GO
@@ -56,12 +62,9 @@ INSERT [dbo].[Role] ([RoleId], [Name]) VALUES (1, N'Admin')
 INSERT [dbo].[Role] ([RoleId], [Name]) VALUES (2, N'SuperUser')
 INSERT [dbo].[Role] ([RoleId], [Name]) VALUES (3, N'NormalUser')
 INSERT [dbo].[Role] ([RoleId], [Name]) VALUES (4, N'Guest')
-SET IDENTITY_INSERT [dbo].[User] ON 
-
 INSERT [dbo].[User] ([UserId], [RoleId], [Username], [FirstName], [LastName], [Mobile], [Email], [DateOfBirth]) VALUES (1, 1, N'kevin', N'Kevin', N'Li', N'0401123456', N'kevin.li@globirdenergy.com.au', NULL)
 INSERT [dbo].[User] ([UserId], [RoleId], [Username], [FirstName], [LastName], [Mobile], [Email], [DateOfBirth]) VALUES (2, 3, N'david', N'David', N'Li', N'0411999888', NULL, NULL)
 INSERT [dbo].[User] ([UserId], [RoleId], [Username], [FirstName], [LastName], [Mobile], [Email], [DateOfBirth]) VALUES (3, 4, N'guest1', N'Hello', N'World', N'0488123456', NULL, CAST(N'1991-01-01' AS Date))
-SET IDENTITY_INSERT [dbo].[User] OFF
 ALTER TABLE [dbo].[User]  WITH CHECK ADD  CONSTRAINT [FK_User_Role] FOREIGN KEY([RoleId])
 REFERENCES [dbo].[Role] ([RoleId])
 GO
