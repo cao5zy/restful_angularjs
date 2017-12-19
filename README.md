@@ -138,7 +138,37 @@ route要正常工作，依赖于index.html的base设置
 
 2. router-outlet  
 router-outlet是AngularJs2用来显示route内容的占位符，通过放在app.component.html中（根component中）。  
-#### ServiceProvider
+#### Providers
+[参考Dependency Injection](https://angular.io/guide/dependency-injection)  
+在AngularJs2 中，providers分为两种，@NgModule providers和@Component providers。  
+_On the one hand, a provider in an NgModule is registered in the root injector. That means that every provider registered within an NgModule will be accessible in the entire application.  
+On the other hand, a provider registered in an application component is available only on that component and all its children.__
+
+在NgModule中使用例子  
+
+	@NgModule({
+	  declarations: [
+	    AppComponent,
+	    MembersComponent,
+	    RolesComponent,
+	    UserInfoPanelComponent,
+	    RuleDirective,
+	    DateFormatValidationDirective,
+	    UniqueUserNameDirective
+	  ],
+	  imports: [
+	    HttpModule,
+	    BrowserModule,
+	    ModalModule.forRoot(),
+	    FormsModule,
+	    RouterModule.forRoot(appRoutes)
+	  ],
+	  bootstrap: [AppComponent],
+	  providers: [AppConfig, RuleService, {provide: Service, useClass: HttpService}]
+	})
+
+
+
 
 #### 样式使用
 
