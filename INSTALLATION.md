@@ -37,14 +37,14 @@
 ### AngularJs 2的部署和配置
 1. 运行git bash, 在c:/app下获取项目  
 	
-	cd c:/
-	mkdir app
-	cd app
-	git clone https://github.com/cao5zy/restful_angularjs.git
+	cd c:/  
+	mkdir app  
+	cd app  
+	git clone https://github.com/cao5zy/restful_angularjs.git  
 
 2. 编译  
 
-	cd frontend
+	cd frontend  
 	ng build
 
 3. 将dist目录中的文件拷贝到IIS的站点目录下  
