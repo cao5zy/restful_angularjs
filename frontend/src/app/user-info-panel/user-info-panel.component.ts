@@ -11,6 +11,9 @@ import { CommonDescriptor } from './../models';
 })
 export class UserInfoPanelComponent implements OnInit {
 
+  userObj:any = {
+    Email:"czy@163.com"
+  };
   editUser:any = null;
   callUserService: any = null;
   callRoleService: any = null;
@@ -63,4 +66,6 @@ export class UserInfoPanelComponent implements OnInit {
   hide(){
     this.onHide.next("");
   }
+
+
 }

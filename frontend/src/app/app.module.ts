@@ -14,6 +14,7 @@ import { RuleDirective } from './rule.directive';
 import { RuleService } from './services';
 import { DateFormatValidationDirective } from './directives/date-format-validation.directive';
 import { UniqueUserNameDirective } from './directives/unique-user-name.directive';
+import { EmailExtenderDirective } from './email-extender.directive';
 
 const appRoutes: Routes = [
   { path: 'members', component: MembersComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     UserInfoPanelComponent,
     RuleDirective,
     DateFormatValidationDirective,
-    UniqueUserNameDirective
+    UniqueUserNameDirective,
+    EmailExtenderDirective
   ],
   imports: [
     HttpModule,

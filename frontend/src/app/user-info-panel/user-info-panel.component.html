@@ -102,3 +102,11 @@
     <button type="submit" class="btn btn-primary" [disabled]="Username.invalid || Email.invalid || Mobile.invalid || DateOfBirth.invalid" (click)="saveUser()" >Submit</button>
   </div>
 </div>
+
+<table>
+  <tr>
+    <td>Email:</td>
+    <!-- <td>{{ user.Email }}:{{ user.EmailUnReadCount }}</td> -->
+    <td><appEmailExtender email="{{userObj.Email}}"></appEmailExtender></td>
+  </tr>
+</table>
